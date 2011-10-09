@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map tileWidth="32" cols="12" rows="32" image="testMap\graphics\forest.png">
+	<slices>
+		<slice id="0" x="0" y="52" w="16" h="64" ox="7" oy="60" type="2" />
+		<slice id="1" x="0" y="52" w="16" h="64" ox="6" oy="61" type="2" />
+		<slice id="2" x="0" y="17" w="32" h="16" ox="0" oy="0" type="0" />
+		<slice id="3" x="0" y="0" w="32" h="16" ox="0" oy="0" type="0" />
+	</slices>
+	<enterTiles>
+	</enterTiles>
+	<actions>
+	</actions>
+	<tiles>
+		<tile _yindex="1" _xindex="1" _X="32" _Y="8" _floorid="2"/>
+		<tile _yindex="1" _xindex="2" _X="64" _Y="8" _floorid="2" _itemid="0"/>
+		<tile _yindex="1" _xindex="3" _X="96" _Y="8" _floorid="2" _itemid="0"/>
+		<tile _yindex="1" _xindex="4" _X="128" _Y="8" _itemid="0"/>
+		<tile _yindex="1" _xindex="5" _X="160" _Y="8" _floorid="2"/>
+		<tile _yindex="1" _xindex="6" _obstruct="true" _X="192" _Y="8" _floorid="2" _itemid="1"/>
+		<tile _yindex="1" _xindex="7" _obstruct="true" _X="224" _Y="8" _floorid="2" _itemid="1"/>
+		<tile _yindex="1" _xindex="8" _obstruct="true" _X="256" _Y="8" _floorid="3" _itemid="1"/>
+		<tile _yindex="1" _xindex="9" _obstruct="true" _X="288" _Y="8" _floorid="3" _itemid="1"/>
+		<tile _yindex="1" _xindex="10" _obstruct="true" _X="320" _Y="8" _floorid="3" _itemid="1"/>
+		<tile _yindex="1" _xindex="11" _X="352" _Y="8" _floorid="2" _itemid="1"/>
+		<tile _yindex="2" _xindex="0" _X="16" _Y="16" _floorid="2" _itemid="1"/>
+		<tile _yindex="2" _xindex="1" _X="48" _Y="16" _floorid="2" _itemid="0"/>
+		<tile _yindex="2" _xindex="2" _X="80" _Y="16" _floorid="2" _itemid="0"/>
+		<tile _yindex="2" _xindex="3" _obstruct="true" _X="112" _Y="16" _floorid="2" _itemid="0"/>
+		<tile _yindex="2" _xindex="4" _obstruct="true" _X="144" _Y="16" _floorid="2" _itemid="0"/>
+		<tile _yindex="2" _xindex="5" _obstruct="true" _X="176" _Y="16" _floorid="2" _itemid="1"/>
+		<tile _yindex="2" _xindex="6" _obstruct="true" _X="208" _Y="16" _floorid="2" _itemid="1"/>
+		<tile _yindex="2" _xindex="7" _obstruct="true" _X="240" _Y="16" _floorid="3" _itemid="1"/>
+		<tile _yindex="2" _xindex="8" _obstruct="true" _X="272" _Y="16" _floorid="3" _itemid="1"/>
+		<tile _yindex="2" _xindex="9" _obstruct="true" _X="304" _Y="16" _floorid="3" _itemid="1"/>
+		<tile _yindex="2" _xindex="10" _obstruct="true" _X="336" _Y="16" _floorid="3" _itemid="1"/>
+		<tile _yindex="2" _xindex="11" _obstruct="true" _X="368" _Y="16" _floorid="2" _itemid="1"/>
+		<tile _yindex="3" _xindex="1" _X="32" _Y="24" _floorid="2" _itemid="1"/>
+		<tile _yindex="3" _xindex="2" _X="64" _Y="24" _floorid="2" _itemid="0"/>
+		<tile _yindex="3" _xindex="3" _obstruct="true" _X="96" _Y="24" _floorid="2" _itemid="1"/>
+		<tile _yindex="3" _xindex="4" _obstruct="true" _X="128" _Y="24" _floorid="2" _itemid="0"/>
+		<tile _yindex="3" _xindex="5" _obstruct="true" _X="160" _Y="24" _floorid="2" _itemid="0"/>
+		<tile _yindex="3" _xindex="6" _X="192" _Y="24" _floorid="2"/>
+		<tile _yindex="3" _xindex="7" _X="224" _Y="24" _floorid="2"/>
+		<tile _yindex="3" _xindex="8" _X="256" _Y="24" _floorid="3"/>
+		<tile _yindex="3" _xindex="9" _X="288" _Y="24" _floorid="3"/>
+		<tile _yindex="3" _xindex="10" _obstruct="true" _X="320" _Y="24" _floorid="3" _itemid="1"/>
+		<tile _yindex="3" _xindex="11" _obstruct="true" _X="352" _Y="24" _floorid="2" _itemid="1"/>
+		<tile _yindex="4" _xindex="0" _X="16" _Y="32" _floorid="2" _itemid="1"/>
+		<tile _yindex="4" _xindex="1" _X="48" _Y="32" _floorid="2" _itemid="0"/>
+		<tile _yindex="4" _xindex="2" _X="80" _Y="32" _floorid="2" _itemid="0"/>
+		<tile _yindex="4" _xindex="3" _obstruct="true" _X="112" _Y="32" _floorid="2" _itemid="0"/>
+		<tile _yindex="4" _xindex="4" _X="144" _Y="32" _floorid="2"/>
+		<tile _yindex="4" _xindex="5" _X="176" _Y="32" _floorid="2"/>
+		<tile _yindex="4" _xindex="6" _X="208" _Y="32" _floorid="2"/>
+		<tile _yindex="4" _xindex="7" _X="240" _Y="32" _floorid="3"/>
+		<tile _yindex="4" _xindex="8" _X="272" _Y="32" _floorid="3"/>
+		<tile _yindex="4" _xindex="9" _obstruct="true" _X="304" _Y="32" _floorid="3" _itemid="1"/>
+		<tile _yindex="4" _xindex="10" _obstruct="true" _X="336" _Y="32" _itemid="1"/>
+		<tile _yindex="4" _xindex="11" _obstruct="true" _X="368" _Y="32" _floorid="2" _itemid="1"/>
+		<tile _yindex="5" _xindex="1" _X="32" _Y="40" _floorid="2" _itemid="1"/>
+		<tile _yindex="5" _xindex="2" _obstruct="true" _X="64" _Y="40" _floorid="2" _itemid="1"/>
+		<tile _yindex="5" _xindex="3" _obstruct="true" _X="96" _Y="40" _floorid="2" _itemid="0"/>
+		<tile _yindex="5" _xindex="4" _obstruct="true" _X="128" _Y="40" _floorid="2" _itemid="0"/>
+		<tile _yindex="5" _xindex="5" _X="160" _Y="40" _floorid="2"/>
+		<tile _yindex="5" _xindex="6" _X="192" _Y="40" _floorid="2"/>
+		<tile _yindex="5" _xindex="7" _X="224" _Y="40" _floorid="2"/>
+		<tile _yindex="5" _xindex="8" _X="256" _Y="40" _floorid="3"/>
+		<tile _yindex="5" _xindex="9" _X="288" _Y="40" _floorid="3"/>
+		<tile _yindex="5" _xindex="10" _obstruct="true" _X="320" _Y="40" _floorid="3" _itemid="0"/>
+		<tile _yindex="5" _xindex="11" _obstruct="true" _X="352" _Y="40" _floorid="2" _itemid="1"/>
+		<tile _yindex="6" _xindex="0" _X="16" _Y="48" _floorid="2" _itemid="1"/>
+		<tile _yindex="6" _xindex="1" _X="48" _Y="48" _floorid="2" _itemid="1"/>
+		<tile _yindex="6" _xindex="2" _obstruct="true" _X="80" _Y="48" _floorid="2" _itemid="0"/>
+		<tile _yindex="6" _xindex="3" _obstruct="true" _X="112" _Y="48" _floorid="2" _itemid="0"/>
+		<tile _yindex="6" _xindex="4" _X="144" _Y="48" _floorid="2"/>
+		<tile _yindex="6" _xindex="5" _X="176" _Y="48" _floorid="2"/>
+		<tile _yindex="6" _xindex="6" _X="208" _Y="48" _floorid="2"/>
+		<tile _yindex="6" _xindex="7" _X="240" _Y="48" _floorid="3"/>
+		<tile _yindex="6" _xindex="8" _X="272" _Y="48" _floorid="3"/>
+		<tile _yindex="6" _xindex="9" _obstruct="true" _X="304" _Y="48" _floorid="3" _itemid="0"/>
+		<tile _yindex="6" _xindex="10" _obstruct="true" _X="336" _Y="48" _itemid="1"/>
+		<tile _yindex="6" _xindex="11" _obstruct="true" _X="368" _Y="48" _floorid="2" _itemid="1"/>
+		<tile _yindex="7" _xindex="1" _X="32" _Y="56" _floorid="2" _itemid="1"/>
+		<tile _yindex="7" _xindex="2" _obstruct="true" _X="64" _Y="56" _floorid="2" _itemid="1"/>
+		<tile _yindex="7" _xindex="3" _obstruct="true" _X="96" _Y="56" _floorid="2" _itemid="0"/>
+		<tile _yindex="7" _xindex="4" _X="128" _Y="56" _floorid="2"/>
+		<tile _yindex="7" _xindex="5" _X="160" _Y="56" _floorid="2"/>
+		<tile _yindex="7" _xindex="6" _X="192" _Y="56" _floorid="2"/>
+		<tile _yindex="7" _xindex="7" _X="224" _Y="56" _floorid="2"/>
+		<tile _yindex="7" _xindex="8" _X="256" _Y="56" _floorid="2"/>
+		<tile _yindex="7" _xindex="9" _X="288" _Y="56" _floorid="3"/>
+		<tile _yindex="7" _xindex="10" _obstruct="true" _X="320" _Y="56" _floorid="2" _itemid="0"/>
+		<tile _yindex="7" _xindex="11" _obstruct="true" _X="352" _Y="56" _floorid="2" _itemid="0"/>
+		<tile _yindex="8" _xindex="0" _X="16" _Y="64" _floorid="2" _itemid="1"/>
+		<tile _yindex="8" _xindex="1" _obstruct="true" _X="48" _Y="64" _floorid="2" _itemid="1"/>
+		<tile _yindex="8" _xindex="2" _obstruct="true" _X="80" _Y="64" _floorid="2" _itemid="0"/>
+		<tile _yindex="8" _xindex="3" _X="112" _Y="64" _floorid="3"/>
+		<tile _yindex="8" _xindex="4" _X="144" _Y="64" _floorid="2"/>
+		<tile _yindex="8" _xindex="5" _X="176" _Y="64" _floorid="2"/>
+		<tile _yindex="8" _xindex="6" _X="208" _Y="64" _floorid="2"/>
+		<tile _yindex="8" _xindex="7" _X="240" _Y="64" _floorid="3"/>
+		<tile _yindex="8" _xindex="8" _X="272" _Y="64" _floorid="2"/>
+		<tile _yindex="8" _xindex="9" _obstruct="true" _X="304" _Y="64" _floorid="3"/>
+		<tile _yindex="8" _xindex="10" _obstruct="true" _X="336" _Y="64" _floorid="2" _itemid="0"/>
+		<tile _yindex="8" _xindex="11" _obstruct="true" _X="368" _Y="64" _floorid="2" _itemid="0"/>
+		<tile _yindex="9" _xindex="1" _X="32" _Y="72" _floorid="2" _itemid="1"/>
+		<tile _yindex="9" _xindex="2" _obstruct="true" _X="64" _Y="72" _floorid="2" _itemid="1"/>
+		<tile _yindex="9" _xindex="3" _X="96" _Y="72" _floorid="2"/>
+		<tile _yindex="9" _xindex="4" _X="128" _Y="72" _floorid="3"/>
+		<tile _yindex="9" _xindex="5" _X="160" _Y="72" _floorid="2"/>
+		<tile _yindex="9" _xindex="6" _X="192" _Y="72" _floorid="2"/>
+		<tile _yindex="9" _xindex="7" _X="224" _Y="72" _floorid="3"/>
+		<tile _yindex="9" _xindex="8" _X="256" _Y="72" _floorid="2"/>
+		<tile _yindex="9" _xindex="9" _X="288" _Y="72" _floorid="2"/>
+		<tile _yindex="9" _xindex="10" _X="320" _Y="72" _floorid="3" _itemid="1"/>
+		<tile _yindex="9" _xindex="11" _obstruct="true" _X="352" _Y="72" _floorid="2" _itemid="1"/>
+		<tile _yindex="10" _xindex="0" _X="16" _Y="80" _floorid="2" _itemid="1"/>
+		<tile _yindex="10" _xindex="1" _obstruct="true" _X="48" _Y="80" _floorid="2" _itemid="1"/>
+		<tile _yindex="10" _xindex="2" _obstruct="true" _X="80" _Y="80" _floorid="2" _itemid="0"/>
+		<tile _yindex="10" _xindex="3" _X="112" _Y="80" _floorid="3"/>
+		<tile _yindex="10" _xindex="4" _X="144" _Y="80" _floorid="2"/>
+		<tile _yindex="10" _xindex="5" _X="176" _Y="80" _floorid="2"/>
+		<tile _yindex="10" _xindex="6" _X="208" _Y="80" _floorid="2"/>
+		<tile _yindex="10" _xindex="7" _X="240" _Y="80" _floorid="2"/>
+		<tile _yindex="10" _xindex="8" _X="272" _Y="80" _floorid="2"/>
+		<tile _yindex="10" _xindex="9" _X="304" _Y="80" _floorid="2" _itemid="1"/>
+		<tile _yindex="10" _xindex="10" _X="336" _Y="80" _floorid="2" _itemid="1"/>
+		<tile _yindex="10" _xindex="11" _obstruct="true" _X="368" _Y="80" _floorid="2" _itemid="1"/>
+		<tile _yindex="11" _xindex="1" _obstruct="true" _X="32" _Y="88" _floorid="2" _itemid="1"/>
+		<tile _yindex="11" _xindex="2" _obstruct="true" _X="64" _Y="88" _floorid="2"/>
+		<tile _yindex="11" _xindex="3" _X="96" _Y="88" _floorid="2"/>
+		<tile _yindex="11" _xindex="4" _X="128" _Y="88" _floorid="2"/>
+		<tile _yindex="11" _xindex="5" _X="160" _Y="88" _floorid="2"/>
+		<tile _yindex="11" _xindex="6" _X="192" _Y="88" _floorid="3"/>
+		<tile _yindex="11" _xindex="7" _X="224" _Y="88" _floorid="2"/>
+		<tile _yindex="11" _xindex="8" _X="256" _Y="88" _floorid="2"/>
+		<tile _yindex="11" _xindex="9" _X="288" _Y="88" _floorid="2"/>
+		<tile _yindex="11" _xindex="10" _X="320" _Y="88" _floorid="2" _itemid="0"/>
+		<tile _yindex="11" _xindex="11" _obstruct="true" _X="352" _Y="88" _floorid="2" _itemid="0"/>
+		<tile _yindex="12" _xindex="0" _obstruct="true" _X="16" _Y="96" _floorid="2" _itemid="1"/>
+		<tile _yindex="12" _xindex="1" _obstruct="true" _X="48" _Y="96" _floorid="2" _itemid="1"/>
+		<tile _yindex="12" _xindex="2" _obstruct="true" _X="80" _Y="96" _floorid="2"/>
+		<tile _yindex="12" _xindex="3" _X="112" _Y="96" _floorid="2"/>
+		<tile _yindex="12" _xindex="4" _X="144" _Y="96" _floorid="2"/>
+		<tile _yindex="12" _xindex="5" _X="176" _Y="96" _floorid="3"/>
+		<tile _yindex="12" _xindex="6" _X="208" _Y="96" _floorid="3"/>
+		<tile _yindex="12" _xindex="7" _X="240" _Y="96" _floorid="2"/>
+		<tile _yindex="12" _xindex="8" _X="272" _Y="96" _floorid="2"/>
+		<tile _yindex="12" _xindex="9" _X="304" _Y="96" _floorid="2"/>
+		<tile _yindex="12" _xindex="10" _X="336" _Y="96" _floorid="2"/>
+		<tile _yindex="12" _xindex="11" _obstruct="true" _X="368" _Y="96" _floorid="2" _itemid="0"/>
+		<tile _yindex="13" _xindex="1" _obstruct="true" _X="32" _Y="104" _floorid="2" _itemid="1"/>
+		<tile _yindex="13" _xindex="2" _obstruct="true" _X="64" _Y="104" _floorid="2" _itemid="1"/>
+		<tile _yindex="13" _xindex="3" _X="96" _Y="104" _floorid="2"/>
+		<tile _yindex="13" _xindex="4" _X="128" _Y="104" _floorid="3"/>
+		<tile _yindex="13" _xindex="5" _X="160" _Y="104" _floorid="3"/>
+		<tile _yindex="13" _xindex="6" _X="192" _Y="104" _floorid="2"/>
+		<tile _yindex="13" _xindex="7" _X="224" _Y="104" _floorid="3"/>
+		<tile _yindex="13" _xindex="8" _X="256" _Y="104" _floorid="2"/>
+		<tile _yindex="13" _xindex="9" _X="288" _Y="104" _floorid="2"/>
+		<tile _yindex="13" _xindex="10" _obstruct="true" _X="320" _Y="104" _floorid="2" _itemid="0"/>
+		<tile _yindex="13" _xindex="11" _obstruct="true" _X="352" _Y="104" _floorid="2" _itemid="1"/>
+		<tile _yindex="14" _xindex="0" _obstruct="true" _X="16" _Y="112" _floorid="2" _itemid="1"/>
+		<tile _yindex="14" _xindex="1" _X="48" _Y="112" _floorid="2"/>
+		<tile _yindex="14" _xindex="2" _obstruct="true" _X="80" _Y="112" _floorid="2" _itemid="1"/>
+		<tile _yindex="14" _xindex="3" _X="112" _Y="112" _floorid="2"/>
+		<tile _yindex="14" _xindex="4" _X="144" _Y="112" _floorid="2"/>
+		<tile _yindex="14" _xindex="5" _X="176" _Y="112" _floorid="2"/>
+		<tile _yindex="14" _xindex="6" _X="208" _Y="112" _floorid="2"/>
+		<tile _yindex="14" _xindex="7" _X="240" _Y="112" _floorid="2"/>
+		<tile _yindex="14" _xindex="8" _X="272" _Y="112" _floorid="3"/>
+		<tile _yindex="14" _xindex="9" _X="304" _Y="112" _floorid="2"/>
+		<tile _yindex="14" _xindex="10" _X="336" _Y="112" _floorid="2"/>
+		<tile _yindex="14" _xindex="11" _obstruct="true" _X="368" _Y="112" _floorid="2" _itemid="1"/>
+		<tile _yindex="15" _xindex="1" _obstruct="true" _X="32" _Y="120" _floorid="2"/>
+		<tile _yindex="15" _xindex="2" _X="64" _Y="120" _floorid="2"/>
+		<tile _yindex="15" _xindex="3" _X="96" _Y="120" _floorid="2"/>
+		<tile _yindex="15" _xindex="4" _X="128" _Y="120" _floorid="2"/>
+		<tile _yindex="15" _xindex="5" _X="160" _Y="120" _floorid="2"/>
+		<tile _yindex="15" _xindex="6" _X="192" _Y="120" _floorid="2"/>
+		<tile _yindex="15" _xindex="7" _X="224" _Y="120" _floorid="2"/>
+		<tile _yindex="15" _xindex="8" _X="256" _Y="120" _floorid="2"/>
+		<tile _yindex="15" _xindex="9" _X="288" _Y="120" _floorid="3"/>
+		<tile _yindex="15" _xindex="10" _X="320" _Y="120" _floorid="2"/>
+		<tile _yindex="15" _xindex="11" _X="352" _Y="120" _floorid="2" _itemid="0"/>
+		<tile _yindex="16" _xindex="0" _obstruct="true" _X="16" _Y="128" _floorid="2" _itemid="1"/>
+		<tile _yindex="16" _xindex="1" _X="48" _Y="128" _floorid="2"/>
+		<tile _yindex="16" _xindex="2" _X="80" _Y="128" _floorid="2" _itemid="1"/>
+		<tile _yindex="16" _xindex="3" _X="112" _Y="128" _floorid="2"/>
+		<tile _yindex="16" _xindex="4" _X="144" _Y="128" _floorid="2"/>
+		<tile _yindex="16" _xindex="5" _X="176" _Y="128" _floorid="2"/>
+		<tile _yindex="16" _xindex="6" _X="208" _Y="128" _floorid="2"/>
+		<tile _yindex="16" _xindex="7" _X="240" _Y="128" _floorid="3"/>
+		<tile _yindex="16" _xindex="8" _X="272" _Y="128" _floorid="3"/>
+		<tile _yindex="16" _xindex="9" _X="304" _Y="128" _floorid="2"/>
+		<tile _yindex="16" _xindex="10" _X="336" _Y="128" _floorid="2"/>
+		<tile _yindex="16" _xindex="11" _obstruct="true" _X="368" _Y="128" _floorid="2"/>
+		<tile _yindex="17" _xindex="1" _obstruct="true" _X="32" _Y="136" _floorid="2"/>
+		<tile _yindex="17" _xindex="2" _X="64" _Y="136" _floorid="2"/>
+		<tile _yindex="17" _xindex="3" _obstruct="true" _X="96" _Y="136" _floorid="2" _itemid="1"/>
+		<tile _yindex="17" _xindex="4" _X="128" _Y="136" _floorid="2"/>
+		<tile _yindex="17" _xindex="5" _X="160" _Y="136" _floorid="3"/>
+		<tile _yindex="17" _xindex="6" _X="192" _Y="136" _floorid="2"/>
+		<tile _yindex="17" _xindex="7" _X="224" _Y="136" _floorid="2"/>
+		<tile _yindex="17" _xindex="8" _X="256" _Y="136" _floorid="2"/>
+		<tile _yindex="17" _xindex="9" _X="288" _Y="136" _floorid="2"/>
+		<tile _yindex="17" _xindex="10" _X="320" _Y="136" _floorid="2"/>
+		<tile _yindex="17" _xindex="11" _X="352" _Y="136" _floorid="2"/>
+		<tile _yindex="18" _xindex="0" _obstruct="true" _X="16" _Y="144" _floorid="2" _itemid="1"/>
+		<tile _yindex="18" _xindex="1" _X="48" _Y="144" _floorid="2"/>
+		<tile _yindex="18" _xindex="2" _obstruct="true" _X="80" _Y="144" _floorid="2" _itemid="1"/>
+		<tile _yindex="18" _xindex="3" _X="112" _Y="144" _floorid="2"/>
+		<tile _yindex="18" _xindex="4" _X="144" _Y="144" _floorid="2"/>
+		<tile _yindex="18" _xindex="5" _X="176" _Y="144" _floorid="2"/>
+		<tile _yindex="18" _xindex="6" _X="208" _Y="144" _floorid="2"/>
+		<tile _yindex="18" _xindex="7" _X="240" _Y="144" _floorid="2"/>
+		<tile _yindex="18" _xindex="8" _X="272" _Y="144" _floorid="2"/>
+		<tile _yindex="18" _xindex="9" _X="304" _Y="144" _floorid="2"/>
+		<tile _yindex="18" _xindex="10" _obstruct="true" _X="336" _Y="144" _floorid="2" _itemid="1"/>
+		<tile _yindex="18" _xindex="11" _X="368" _Y="144" _floorid="2" _itemid="1"/>
+		<tile _yindex="19" _xindex="1" _obstruct="true" _X="32" _Y="152" _floorid="2" _itemid="1"/>
+		<tile _yindex="19" _xindex="2" _X="64" _Y="152" _floorid="2"/>
+		<tile _yindex="19" _xindex="3" _X="96" _Y="152" _floorid="2"/>
+		<tile _yindex="19" _xindex="4" _X="128" _Y="152" _floorid="2"/>
+		<tile _yindex="19" _xindex="5" _X="160" _Y="152" _floorid="2"/>
+		<tile _yindex="19" _xindex="6" _X="192" _Y="152" _floorid="2"/>
+		<tile _yindex="19" _xindex="7" _X="224" _Y="152" _floorid="2"/>
+		<tile _yindex="19" _xindex="8" _X="256" _Y="152" _floorid="2"/>
+		<tile _yindex="19" _xindex="9" _X="288" _Y="152" _floorid="2"/>
+		<tile _yindex="19" _xindex="10" _X="320" _Y="152" _floorid="2"/>
+		<tile _yindex="19" _xindex="11" _X="352" _Y="152" _floorid="2"/>
+		<tile _yindex="20" _xindex="0" _obstruct="true" _X="16" _Y="160" _floorid="2" _itemid="1"/>
+		<tile _yindex="20" _xindex="1" _X="48" _Y="160" _floorid="2"/>
+		<tile _yindex="20" _xindex="2" _X="80" _Y="160" _floorid="2" _itemid="1"/>
+		<tile _yindex="20" _xindex="3" _X="112" _Y="160" _floorid="2"/>
+		<tile _yindex="20" _xindex="4" _X="144" _Y="160" _floorid="2"/>
+		<tile _yindex="20" _xindex="5" _X="176" _Y="160" _floorid="2"/>
+		<tile _yindex="20" _xindex="6" _X="208" _Y="160" _floorid="2"/>
+		<tile _yindex="20" _xindex="7" _X="240" _Y="160" _floorid="2"/>
+		<tile _yindex="20" _xindex="8" _X="272" _Y="160" _floorid="2"/>
+		<tile _yindex="20" _xindex="9" _X="304" _Y="160" _floorid="2"/>
+		<tile _yindex="20" _xindex="10" _X="336" _Y="160" _floorid="2" _itemid="1"/>
+		<tile _yindex="20" _xindex="11" _X="368" _Y="160" _floorid="2"/>
+		<tile _yindex="21" _xindex="1" _obstruct="true" _X="32" _Y="168" _floorid="2" _itemid="1"/>
+		<tile _yindex="21" _xindex="2" _obstruct="true" _X="64" _Y="168" _floorid="2"/>
+		<tile _yindex="21" _xindex="3" _X="96" _Y="168" _floorid="2"/>
+		<tile _yindex="21" _xindex="4" _X="128" _Y="168" _floorid="2"/>
+		<tile _yindex="21" _xindex="5" _X="160" _Y="168" _floorid="2"/>
+		<tile _yindex="21" _xindex="6" _X="192" _Y="168" _floorid="2"/>
+		<tile _yindex="21" _xindex="7" _X="224" _Y="168" _floorid="2"/>
+		<tile _yindex="21" _xindex="8" _X="256" _Y="168" _floorid="2"/>
+		<tile _yindex="21" _xindex="9" _X="288" _Y="168" _floorid="2"/>
+		<tile _yindex="21" _xindex="10" _X="320" _Y="168" _floorid="2"/>
+		<tile _yindex="21" _xindex="11" _X="352" _Y="168" _floorid="2"/>
+		<tile _yindex="22" _xindex="0" _obstruct="true" _X="16" _Y="176" _floorid="2" _itemid="1"/>
+		<tile _yindex="22" _xindex="1" _obstruct="true" _X="48" _Y="176" _floorid="2"/>
+		<tile _yindex="22" _xindex="2" _obstruct="true" _X="80" _Y="176" _floorid="2" _itemid="1"/>
+		<tile _yindex="22" _xindex="3" _obstruct="true" _X="112" _Y="176" _floorid="2" _itemid="1"/>
+		<tile _yindex="22" _xindex="4" _X="144" _Y="176" _floorid="2"/>
+		<tile _yindex="22" _xindex="5" _X="176" _Y="176" _floorid="2"/>
+		<tile _yindex="22" _xindex="6" _X="208" _Y="176" _floorid="2"/>
+		<tile _yindex="22" _xindex="7" _X="240" _Y="176" _floorid="3"/>
+		<tile _yindex="22" _xindex="8" _X="272" _Y="176" _floorid="2"/>
+		<tile _yindex="22" _xindex="9" _X="304" _Y="176" _floorid="2"/>
+		<tile _yindex="22" _xindex="10" _obstruct="true" _X="336" _Y="176" _floorid="2" _itemid="1"/>
+		<tile _yindex="22" _xindex="11" _X="368" _Y="176" _floorid="2"/>
+		<tile _yindex="23" _xindex="1" _obstruct="true" _X="32" _Y="184" _floorid="2" _itemid="1"/>
+		<tile _yindex="23" _xindex="2" _obstruct="true" _X="64" _Y="184" _floorid="2" _itemid="1"/>
+		<tile _yindex="23" _xindex="3" _obstruct="true" _X="96" _Y="184" _floorid="2" _itemid="1"/>
+		<tile _yindex="23" _xindex="4" _X="128" _Y="184" _floorid="2"/>
+		<tile _yindex="23" _xindex="5" _X="160" _Y="184" _floorid="2"/>
+		<tile _yindex="23" _xindex="6" _X="192" _Y="184" _floorid="3"/>
+		<tile _yindex="23" _xindex="7" _X="224" _Y="184" _floorid="2"/>
+		<tile _yindex="23" _xindex="8" _X="256" _Y="184" _floorid="3"/>
+		<tile _yindex="23" _xindex="9" _X="288" _Y="184" _floorid="2"/>
+		<tile _yindex="23" _xindex="10" _obstruct="true" _X="320" _Y="184" _floorid="2" _itemid="1"/>
+		<tile _yindex="23" _xindex="11" _X="352" _Y="184" _floorid="2"/>
+		<tile _yindex="24" _xindex="0" _obstruct="true" _X="16" _Y="192" _floorid="2" _itemid="1"/>
+		<tile _yindex="24" _xindex="1" _obstruct="true" _X="48" _Y="192" _floorid="2" _itemid="1"/>
+		<tile _yindex="24" _xindex="2" _obstruct="true" _X="80" _Y="192" _floorid="2" _itemid="1"/>
+		<tile _yindex="24" _xindex="3" _obstruct="true" _X="112" _Y="192" _floorid="2" _itemid="1"/>
+		<tile _yindex="24" _xindex="4" _X="144" _Y="192" _floorid="2"/>
+		<tile _yindex="24" _xindex="5" _X="176" _Y="192" _floorid="2"/>
+		<tile _yindex="24" _xindex="6" _X="208" _Y="192" _floorid="2"/>
+		<tile _yindex="24" _xindex="7" _X="240" _Y="192" _floorid="3"/>
+		<tile _yindex="24" _xindex="8" _X="272" _Y="192" _floorid="2"/>
+		<tile _yindex="24" _xindex="9" _X="304" _Y="192" _floorid="2"/>
+		<tile _yindex="24" _xindex="10" _X="336" _Y="192" _floorid="2"/>
+		<tile _yindex="24" _xindex="11" _X="368" _Y="192" _floorid="2"/>
+		<tile _yindex="25" _xindex="1" _obstruct="true" _X="32" _Y="200" _floorid="2" _itemid="1"/>
+		<tile _yindex="25" _xindex="2" _obstruct="true" _X="64" _Y="200" _floorid="2" _itemid="1"/>
+		<tile _yindex="25" _xindex="3" _obstruct="true" _X="96" _Y="200" _floorid="2" _itemid="1"/>
+		<tile _yindex="25" _xindex="4" _X="128" _Y="200" _floorid="2"/>
+		<tile _yindex="25" _xindex="5" _X="160" _Y="200" _floorid="2"/>
+		<tile _yindex="25" _xindex="6" _X="192" _Y="200" _floorid="2"/>
+		<tile _yindex="25" _xindex="7" _X="224" _Y="200" _floorid="2"/>
+		<tile _yindex="25" _xindex="8" _X="256" _Y="200" _floorid="2"/>
+		<tile _yindex="25" _xindex="9" _X="288" _Y="200" _floorid="2"/>
+		<tile _yindex="25" _xindex="10" _X="320" _Y="200" _floorid="2"/>
+		<tile _yindex="25" _xindex="11" _X="352" _Y="200" _floorid="2"/>
+		<tile _yindex="26" _xindex="0" _obstruct="true" _X="16" _Y="208" _floorid="2" _itemid="1"/>
+		<tile _yindex="26" _xindex="1" _obstruct="true" _X="48" _Y="208" _floorid="2" _itemid="1"/>
+		<tile _yindex="26" _xindex="2" _obstruct="true" _X="80" _Y="208" _floorid="2" _itemid="1"/>
+		<tile _yindex="26" _xindex="3" _obstruct="true" _X="112" _Y="208" _floorid="2" _itemid="1"/>
+		<tile _yindex="26" _xindex="4" _X="144" _Y="208" _floorid="2"/>
+		<tile _yindex="26" _xindex="5" _X="176" _Y="208" _floorid="2"/>
+		<tile _yindex="26" _xindex="6" _X="208" _Y="208" _floorid="2"/>
+		<tile _yindex="26" _xindex="7" _X="240" _Y="208" _floorid="2"/>
+		<tile _yindex="26" _xindex="8" _X="272" _Y="208" _floorid="2"/>
+		<tile _yindex="26" _xindex="9" _X="304" _Y="208" _floorid="2"/>
+		<tile _yindex="26" _xindex="10" _X="336" _Y="208" _floorid="3"/>
+		<tile _yindex="26" _xindex="11" _X="368" _Y="208" _floorid="2"/>
+		<tile _yindex="27" _xindex="1" _obstruct="true" _X="32" _Y="216" _floorid="2" _itemid="1"/>
+		<tile _yindex="27" _xindex="2" _obstruct="true" _X="64" _Y="216" _floorid="2" _itemid="1"/>
+		<tile _yindex="27" _xindex="3" _obstruct="true" _X="96" _Y="216" _floorid="2" _itemid="1"/>
+		<tile _yindex="27" _xindex="4" _obstruct="true" _X="128" _Y="216" _floorid="2" _itemid="1"/>
+		<tile _yindex="27" _xindex="5" _obstruct="true" _X="160" _Y="216" _floorid="2" _itemid="1"/>
+		<tile _yindex="27" _xindex="6" _X="192" _Y="216" _floorid="2"/>
+		<tile _yindex="27" _xindex="7" _X="224" _Y="216" _floorid="2"/>
+		<tile _yindex="27" _xindex="8" _X="256" _Y="216" _floorid="2"/>
+		<tile _yindex="27" _xindex="9" _obstruct="true" _X="288" _Y="216" _floorid="2" _itemid="1"/>
+		<tile _yindex="27" _xindex="10" _X="320" _Y="216" _floorid="2"/>
+		<tile _yindex="27" _xindex="11" _X="352" _Y="216" _floorid="2"/>
+		<tile _yindex="28" _xindex="0" _obstruct="true" _X="16" _Y="224" _floorid="2" _itemid="1"/>
+		<tile _yindex="28" _xindex="1" _obstruct="true" _X="48" _Y="224" _floorid="2" _itemid="1"/>
+		<tile _yindex="28" _xindex="2" _obstruct="true" _X="80" _Y="224" _floorid="2" _itemid="1"/>
+		<tile _yindex="28" _xindex="3" _obstruct="true" _X="112" _Y="224" _floorid="2" _itemid="1"/>
+		<tile _yindex="28" _xindex="4" _obstruct="true" _X="144" _Y="224" _floorid="2" _itemid="1"/>
+		<tile _yindex="28" _xindex="5" _X="176" _Y="224" _floorid="2"/>
+		<tile _yindex="28" _xindex="6" _X="208" _Y="224" _floorid="2"/>
+		<tile _yindex="28" _xindex="7" _X="240" _Y="224" _floorid="2"/>
+		<tile _yindex="28" _xindex="8" _obstruct="true" _X="272" _Y="224" _floorid="2" _itemid="1"/>
+		<tile _yindex="28" _xindex="9" _X="304" _Y="224" _floorid="2"/>
+		<tile _yindex="28" _xindex="10" _X="336" _Y="224" _floorid="2"/>
+		<tile _yindex="28" _xindex="11" _X="368" _Y="224" _floorid="2"/>
+		<tile _yindex="29" _xindex="1" _obstruct="true" _X="32" _Y="232" _floorid="2" _itemid="1"/>
+		<tile _yindex="29" _xindex="2" _obstruct="true" _X="64" _Y="232" _floorid="2" _itemid="1"/>
+		<tile _yindex="29" _xindex="3" _obstruct="true" _X="96" _Y="232" _floorid="2" _itemid="1"/>
+		<tile _yindex="29" _xindex="4" _obstruct="true" _X="128" _Y="232" _floorid="2"/>
+		<tile _yindex="29" _xindex="5" _X="160" _Y="232" _floorid="2"/>
+		<tile _yindex="29" _xindex="6" _obstruct="true" _X="192" _Y="232" _floorid="2" _itemid="1"/>
+		<tile _yindex="29" _xindex="7" _obstruct="true" _X="224" _Y="232" _floorid="2" _itemid="1"/>
+		<tile _yindex="29" _xindex="8" _X="256" _Y="232" _floorid="2"/>
+		<tile _yindex="29" _xindex="9" _X="288" _Y="232" _floorid="2"/>
+		<tile _yindex="29" _xindex="10" _X="320" _Y="232" _floorid="2"/>
+		<tile _yindex="29" _xindex="11" _X="352" _Y="232" _floorid="2"/>
+		<tile _yindex="30" _xindex="0" _obstruct="true" _X="16" _Y="240" _floorid="2" _itemid="1"/>
+		<tile _yindex="30" _xindex="1" _obstruct="true" _X="48" _Y="240" _floorid="2" _itemid="1"/>
+		<tile _yindex="30" _xindex="2" _obstruct="true" _X="80" _Y="240" _floorid="2" _itemid="1"/>
+		<tile _yindex="30" _xindex="3" _obstruct="true" _X="112" _Y="240" _floorid="2" _itemid="1"/>
+		<tile _yindex="30" _xindex="4" _X="144" _Y="240" _floorid="2"/>
+		<tile _yindex="30" _xindex="5" _X="176" _Y="240" _floorid="2"/>
+		<tile _yindex="30" _xindex="6" _X="208" _Y="240" _floorid="2"/>
+		<tile _yindex="30" _xindex="7" _obstruct="true" _X="240" _Y="240" _floorid="2" _itemid="1"/>
+		<tile _yindex="30" _xindex="8" _X="272" _Y="240" _floorid="2"/>
+		<tile _yindex="30" _xindex="9" _X="304" _Y="240" _floorid="2"/>
+		<tile _yindex="30" _xindex="10" _X="336" _Y="240" _floorid="2"/>
+		<tile _yindex="30" _xindex="11" _X="368" _Y="240" _floorid="2"/>
+		<tile _yindex="31" _xindex="1" _obstruct="true" _X="32" _Y="248" _floorid="2" _itemid="1"/>
+		<tile _yindex="31" _xindex="2" _obstruct="true" _X="64" _Y="248" _floorid="2" _itemid="1"/>
+		<tile _yindex="31" _xindex="3" _obstruct="true" _X="96" _Y="248" _floorid="2" _itemid="1"/>
+		<tile _yindex="31" _xindex="4" _X="128" _Y="248" _floorid="2"/>
+		<tile _yindex="31" _xindex="5" _X="160" _Y="248" _floorid="2"/>
+		<tile _yindex="31" _xindex="6" _X="192" _Y="248" _floorid="2"/>
+		<tile _yindex="31" _xindex="7" _X="224" _Y="248" _floorid="2"/>
+		<tile _yindex="31" _xindex="8" _X="256" _Y="248" _floorid="2"/>
+		<tile _yindex="31" _xindex="9" _X="288" _Y="248" _floorid="2"/>
+		<tile _yindex="31" _xindex="10" _X="320" _Y="248" _floorid="3"/>
+	</tiles>
+</map>

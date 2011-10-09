@@ -1,0 +1,4 @@
+<sprite name="mini-me" >
+	<sheet img="chars/animatedBody.png" type="animated" frames="9" ox="-6" oy="-6" visible="true" />
+	<sheet img="chars/headSprite.png" type="still" ox="-6" oy="-16" visible="true" />
+</sprite>

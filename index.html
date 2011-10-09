@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html id="mopics.nl" lang="en">
+	<head>
+		<style type="text/css">
+		<!--
+		body {
+			background-color: #006600;
+		}
+		-->
+		</style>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>index</title>
+		<meta name="generator" content="TextMate http://macromates.com/">
+		<meta name="author" content="Peter Dijkstra">
+		<!-- Date: 2011-09-10 -->
+		s
+		<!-- import jquery [ used by isogame.KeyControl class ]       [s]-->
+		<script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery-latest.js"></script>
+		<!-- import jquery [ used by isogame.KeyControl class ]       [.]-->
+		
+		<!-- import javascript-classes   [for OOP functionality]      [s]  -->
+		<script type="text/javascript" charset="utf-8" src="js/classes/js.lang.Class-1.0-min.js" ></script>
+		<script type="text/javascript" charset="utf-8" src="js/classes/js.util.ArrayList-1.0-min.js" ></script>
+		<!--<script type="text/javascript" charset="utf-8" src="js/classes/js.events.EventDispatcher-1.0-min.js" ></script>-->
+		<!-- import javascript-classes   [for OOP functionality]     [.]  -->
+		
+		<!-- import the engine!                                      [s]  -->
+		<script charset="utf-8" type="text/javascript" src="js/thirdparty/FrameBasedAnimation_oud.js" ></script>
+		<script charset="utf-8" type="text/javascript" src="js/pixfonts/pixfonts.js" ></script>
+		<script charset="utf-8" type="text/javascript" src="js/geom/geom.js" ></script>
+		<script charset="utf-8" type="text/javascript" src="js/graphics/sprites.js" ></script>
+		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.constants.js" ></script>
+		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.playercontrol.js" ></script>
+		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.map.js" ></script>
+		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.spritemanager.js" ></script>
+		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.sprites.js" ></script>
+		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.tilepainter.js" ></script>
+		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.movers.js" ></script>
+		<!-- import the engine!                                      [.]  -->
+		
+		<!-- import isomap                                           [s]  -->
+		<script charset="utf-8" type="text/javascript" src="assets/maps/forest.js" ></script>
+		<!-- import isomap                                           [.]  -->
+		
+		
+		<script type="text/javascript" charset="utf-8" >
+		
+			var player_oud;
+			var body;
+			var head;
+			var context;
+			var mapclipboard;
+			var spriteclipboard;
+			var speed = 1;
+			var item;
+			var floor;
+			var info;
+			var m2t;
+			var miniMe;
+			var control;
+			
+			function init(){
+				
+				floor = document.getElementById('floor')
+				item = document.getElementById('item');
+				m2t  = document.getElementById('m2t');
+				info = document.getElementById('info');
+				
+				
+				//create map
+				map = new isogame.IsoMap( maps.forest, new geom.Rectangle(0,0,30,30), floor, item, info, m2t  );
+				
+				//setup miniMe
+				miniMe = new isogame.FirstPerson();
+				miniMe.addAnimatedSpriteSheet( new isogame.IsoAnimationSheet( new isogame.PngSheet( "assets/sheets/animatedBodySmooth.png", new geom.Rectangle(0,0,12,10) ),
+				 								-5, -5, 9 ) );
+				miniMe.addStillSpriteSheet( new isogame.IsoStillSheet( new isogame.PngSheet( "assets/sheets/headSprite.png", new geom.Rectangle(0,0,11,10) ),
+				 							-5, -14 ) );
+				//setup miniMe mover
+				var speed = 1;
+				var mover = new isogame.SpriteMover( miniMe, map, speed );
+				miniMe.asignMover( mover );
+				
+				// add miniMe to map
+				map.addMovable( miniMe, 5, 2 );
+				
+				map.onReady = function()
+				{
+					control = new isogame.KeyControl();
+					/** create Robbert's player **/
+					player_oud = new FrameBasedAnimation();
+					player_oud.setFrameSpeed( 30 );
+					player_oud.myTickerEvent.unsubscribe( updateFrame );
+					player_oud.myTickerEvent.subscribe( updateFrame );
+				}
+				map.setup();
+			}
+			function updateFrame()
+			{
+				map.update();
+				map.draw();
+				var dir = control.getDirection();
+				
+				if( dir<8 )
+				{
+					// console.log( "dir="+dir );
+					document.getElementById( 'dir'+dir ).checked = true;
+					miniMe.mover._moveInRequest = true;
+					if( miniMe.mover.isSnapped() )
+					{
+						miniMe.play();
+						miniMe.mover.goInDir( dir );
+						miniMe.setDirection( dir );
+					}
+				}
+				else if( miniMe.mover.isSnapped() )
+				{
+					miniMe.gotoAndStop( 0 );	
+				}
+				else
+				{
+					miniMe.mover._moveInRequest = false;
+				}
+			}
+			
+		</script>
+	</head>
+	<body onLoad="init()">
+	<canvas style="position:absolute" id="floor" width="200" height="200" >your browser does not support the canvas tag </canvas>
+	<canvas style="position:absolute" id="item" width="200" height="200" >your browser does not support the canvas tag </canvas>
+	<canvas style="position:absolute" id="info" width="200" height="200" >your browser does not support the canvas tag </canvas>
+    <canvas id="m2t" width="64" height="32" >your browser does not support the canvas tag </canvas>
+	<input type='checkbox' id='dir0' />
+	<input type='checkbox' id='dir1' />
+	<input type='checkbox' id='dir2' />
+	<input type='checkbox' id='dir3' />
+	<input type='checkbox' id='dir4' />
+	<input type='checkbox' id='dir5' />
+	<input type='checkbox' id='dir6' />
+	<input type='checkbox' id='dir7' />
+	</body>
+</html>
