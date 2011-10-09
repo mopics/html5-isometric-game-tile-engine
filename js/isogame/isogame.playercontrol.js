@@ -4,7 +4,7 @@ if (! ('isogame' in this)) {
     this.isogame = {};
 }
 
-isogame._keydirs = new Array();
+isogame._keydirs =[];
 isogame._keydirs[37] = [ false, isogame.dirs.LEFT ];
 isogame._keydirs[38] = [ false, isogame.dirs.UP ];
 isogame._keydirs[39] = [ false, isogame.dirs.RIGHT ];
@@ -52,10 +52,52 @@ isogame.KeyControl = new Class()({
 		}
 	},
 	getDirection:function() {
-		if( isogame._keydirs[37][0] ) return isogame._keydirs[37][1];
-		if( isogame._keydirs[38][0] ) return isogame._keydirs[38][1];
-		if( isogame._keydirs[39][0] ) return isogame._keydirs[39][1];
-		if( isogame._keydirs[40][0] ) return isogame._keydirs[40][1];
+        
+        //left
+		if( isogame._keydirs[37][0] ) {
+            //up
+            if(isogame._keydirs[38][0]) return isogame.dirs.LEFT_UP;
+            //down
+            if(isogame._keydirs[40][0]) return isogame.dirs.LEFT_DOWN;
+            //left
+            return isogame._keydirs[37][1];
+        }
+        
+        
+        //up
+		if( isogame._keydirs[38][0] ) {
+            //left
+             if(isogame._keydirs[37][0]) return isogame.dirs.LEFT_UP;
+            //right
+             if(isogame._keydirs[39][0]) return isogame.dirs.RIGHT_UP;
+            //up
+            return isogame._keydirs[38][1];
+         }
+        
+        
+        
+		//right
+        if( isogame._keydirs[39][0] ) {   
+            //up
+             if(isogame._keydirs[38][0]) return isogame.dirs.RIGHT_UP;
+            //down
+             if(isogame._keydirs[40][0]) return isogame.dirs.RIGHT_DOWN;
+            //right
+            return isogame._keydirs[39][1];
+            
+         }
+        
+        
+        
+		//down
+        if( isogame._keydirs[40][0] ) {
+            //left
+              if(isogame._keydirs[37][0]) return isogame.dirs.LEFT_DOWN;
+            //right
+              if(isogame._keydirs[39][0]) return isogame.dirs.RIGHT_DOWN;            
+            //down
+             return isogame._keydirs[40][1];
+         }
 		return 8;
 	}
 });
