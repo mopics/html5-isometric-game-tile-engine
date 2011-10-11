@@ -58,6 +58,7 @@
 			var m2t;
 			var miniMe;
 			var control;
+			var drawInfoCanvas = false;
 			
 			function init(){
 				
@@ -98,14 +99,13 @@
 			function updateFrame()
 			{
 				map.update();
-				map.draw();
+				map.draw( drawInfoCanvas );
 				var dir = control.getDirection();
 				
 				if( dir<8 )
 				{
 					// console.log( "dir="+dir );
-					document.getElementById( 'dir'+dir ).checked = true;
-					miniMe.mover._moveInRequest = true;
+					miniMe.mover.setRequested( true );
 					if( miniMe.mover.isSnapped() )
 					{
 						miniMe.play();
@@ -130,13 +130,5 @@
 	<canvas style="position:absolute" id="item" width="200" height="200" >your browser does not support the canvas tag </canvas>
 	<canvas style="position:absolute" id="info" width="200" height="200" >your browser does not support the canvas tag </canvas>
     <canvas id="m2t" width="64" height="32" >your browser does not support the canvas tag </canvas>
-	<input type='checkbox' id='dir0' />
-	<input type='checkbox' id='dir1' />
-	<input type='checkbox' id='dir2' />
-	<input type='checkbox' id='dir3' />
-	<input type='checkbox' id='dir4' />
-	<input type='checkbox' id='dir5' />
-	<input type='checkbox' id='dir6' />
-	<input type='checkbox' id='dir7' />
 	</body>
 </html>
