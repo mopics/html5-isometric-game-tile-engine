@@ -254,7 +254,7 @@ isogame.SpriteMover = new Class( isogame.AMover ) ({
 			if(m.Yindex%2==1)
 				Xi --;
 			//if move is no longer requested || next tile is not walkable
-			if( !self._moveInRequest || !self._bytes.isWalkable(m.Yindex-1,m.Xindex) )
+			if( !self._moveInRequest || !self._bytes.isWalkable(m.Yindex-1,Xi) )
 			{
 				self._currDir = 8;
 				return;
