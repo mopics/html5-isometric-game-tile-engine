@@ -312,7 +312,6 @@ isogame.SpriteMover = new Class( isogame.AMover ) ({
 			if(m.Yindex%2==0)
 				Xi ++;
 			//if move is no longer requested || next tile is not walkable
-			var walkable = self._bytes.isWalkable(m.Yindex-1,Xi);
 			if( !self._moveInRequest || !self._bytes.isWalkable(m.Yindex-1,Xi) )
 			{
 				self._currDir = 8;
@@ -338,7 +337,7 @@ isogame.SpriteMover = new Class( isogame.AMover ) ({
 		var m = self._movable;
 		if( self.isSnapped() )
 		{
-			Xi = m.Yindex;
+			Xi = m.Xindex;
 			if(m.Yindex%2==0)
 				Xi ++;
 			//if move is no longer requested || next tile is not walkable
@@ -354,7 +353,7 @@ isogame.SpriteMover = new Class( isogame.AMover ) ({
 		//swap tile?
 		if( m.relX == self._bytes.th )
 		{
-			Xi = m.Yindex;
+			Xi = m.Xindex;
 			if(m.Yindex%2==0)
 			{
 				Xi ++;

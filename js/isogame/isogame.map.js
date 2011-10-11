@@ -43,8 +43,8 @@ isogame.IsoMap = new Class()({
 		this._spriteManager.update();
 	},
 	//draw data
-	draw:function(){
-		this._tilePainter.draw();
+	draw:function( drawInfoCanvas ){
+		this._tilePainter.draw( drawInfoCanvas );
 	},
 	
 });

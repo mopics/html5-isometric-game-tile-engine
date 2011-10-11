@@ -20,7 +20,7 @@ isogame.TilePainter = new Class()({
 		this.ymovemapadjust = 0;
 		this.xmovemapadjust = 0;
 	},
-	draw:function()
+	draw:function( drawInfoCanvas )
 	{
 		if( this.cropChanged ) // if crop changed redraw floor-tiles also
 		{
@@ -51,8 +51,8 @@ isogame.TilePainter = new Class()({
 					{
 						if(f>-1)
 							this._drawFloorTile(f,x,y);
-							
-							//this._drawTileIdx( iy, ix, x, y );
+						if( drawInfoCanvas )
+							this._drawTileIdx( iy, ix, x, y );
 					}
 					if(it>-1)
 						this._drawItemTile(it,x,y);
