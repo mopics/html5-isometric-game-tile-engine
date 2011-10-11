@@ -1,10 +1,37 @@
 var maps = {}
-
+maps.getTiles= function() {
+   _tiles=[];
+   for(x=0;x<100;x+=1) {
+      for(y=0;y<100;y+=1) {
+        
+        floorId=parseInt(Math.random()*3);
+        if(floorId>1) {
+            itemid=2;
+            _tiles.push({
+              "_yindex": y,
+              "_xindex": x,
+              "_floorid": floorId,
+              "_itemid":itemid
+              });
+        } else {
+          _tiles.push({
+            "_yindex": y,
+            "_xindex": x,
+            "_floorid": floorId
+            });
+        }
+        
+        
+         
+      }   
+  }
+  return _tiles;
+  }
 maps.forest = {
-	image:"assets/maps/graphics/simpleGarden.png",
-	tileWidth:32,
-	rows:12,
-	cols:6,
+	"image":"assets/maps/graphics/simpleGarden.png",
+	"tileWidth":32,
+	"rows":100,
+	"cols":100,
     "enterTiles": [],
     "slices": [{
         "_h": 16,
@@ -51,86 +78,5 @@ maps.forest = {
         "_type": 0
     }],
     "actions": [],
-    "tiles": [{
-		"_yindex": 5,
-        "_xindex": 1,
-        "_floorid": 1
-	},
-	{
-		"_yindex": 5,
-        "_xindex": 2,
-        "_floorid": 0
-	},
-	{
-		"_yindex": 5,
-        "_xindex": 3,
-        "_floorid": 1,
-	},
-	{
-		"_yindex": 5,
-        "_xindex": 4,
-        "_floorid": 0
-	},
-	{
-		"_yindex": 6,
-        "_xindex": 1,
-        "_floorid": 1
-	},
-	{
-		"_yindex": 6,
-        "_xindex": 2,
-        "_floorid": 0
-	},
-	{
-		"_yindex": 6,
-        "_xindex": 3,
-        "_floorid": 1
-	},
-	{
-		"_yindex": 6,
-        "_xindex": 4,
-        "_floorid": 0
-	}	,
-		{
-			"_yindex": 7,
-	        "_xindex": 1,
-	        "_floorid": 1
-		},
-		{
-			"_yindex": 7,
-	        "_xindex": 2,
-	        "_floorid": 0
-		},
-		{
-			"_yindex": 7,
-	        "_xindex": 3,
-	        "_floorid": 1,
-			"_itemid":2
-		},
-		{
-			"_yindex": 7,
-	        "_xindex": 4,
-	        "_floorid": 0
-		}	,
-			{
-				"_yindex": 8,
-		        "_xindex": 1,
-		        "_floorid": 1
-			},
-			{
-				"_yindex": 8,
-		        "_xindex": 2,
-		        "_floorid": 0
-			},
-			{
-				"_yindex": 8,
-		        "_xindex": 3,
-		        "_floorid": 1
-			},
-			{
-				"_yindex": 8,
-		        "_xindex": 4,
-		        "_floorid": 0
-			}
-	]
+    "tiles": maps.getTiles()
 }
