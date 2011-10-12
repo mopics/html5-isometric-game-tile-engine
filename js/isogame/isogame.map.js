@@ -5,7 +5,7 @@ if (! ('isogame' in this)) {
 }
 
 isogame.IsoMap = new Class()({
-	__init__:function( mapData, cropRect, floorCanvas, itemCanvas, infoCanvas, m2tCanvas )
+	__init__:function( mapData, cropRect, floorCanvas, itemCanvas, m2tCanvas, infoCanvas )
 	{
 		this._data = mapData;
 		this._bytes = new isogame.MapBytes( mapData );
@@ -17,7 +17,7 @@ isogame.IsoMap = new Class()({
 		this._m2t = new isogame.Mouse2Tile( mapData.tileWidth, mapData.rows, mapData.cols, m2tCanvas.getContext('2d') );
 		this._image = new Image();
 		this._spriteManager = new isogame.SpriteManager( this );
-		this._tilePainter = new isogame.TilePainter( this );
+		this._tilePainter = new isogame.TilePainter( this, this._infoCanvas!=null );
 		this._firstPerson = null; // to be set
 	},
 	setup:function(){

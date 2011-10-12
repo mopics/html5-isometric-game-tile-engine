@@ -29,7 +29,7 @@ isogame.AMover = new Class( isogame.AMover )({
 	},
 	update:function()
 	{
-		//to be overridden by decorators
+		//to be overridden by subclasses
 	},
 	goInDir:function( d )
 	{
@@ -171,7 +171,6 @@ isogame.SpriteMover = new Class( isogame.AMover ) ({
 		if( self.isSnapped() )
 		{
 			//if move is no longer requested || next tile is not walkable
-			var wb = self._bytes.isWalkable(m.Yindex-2,m.Xindex);
 			if( !self._moveInRequest || !self._bytes.isWalkable(m.Yindex-2,m.Xindex) )
 			{
 				self._currDir = 8;
@@ -365,5 +364,253 @@ isogame.SpriteMover = new Class( isogame.AMover ) ({
 		this._moveInRequest = false;
 	}
 });
+
+isogame.MapMover = new Class( isogame.AMover ) ({
+	__init__:function( movable, isomap, speed ){
+		isogame.AMover.__init__.call( this, movable, isomap, speed );
+		this.sm = this._map._spriteManager;
+		this.tp = this._map._tilePainter;
+		this.resolvers = [ 
+			this.resolveDown,
+			this.resolveLeftDown,
+			this.resolveLeft,
+			this.resolveLeftUp,
+			this.resolveUp,
+			this.resolveRightUp,
+			this.resolveRight,
+			this.resolveRightDown
+		];
+		this._m2t = this._map._m2t;
+	},
+	update:function()
+	{
+		if( !this.isSnapped() || this._currDir<8 )
+		{
+			this.resolvers[this._currDir](this);
+		}
+		else
+			this.stop();
+	},
+	resolveUp:function(self){
+		var m = self._movable;
+		if( self.isSnapped() )
+		{
+			//if move is no longer requested || next tile is not walkable
+			if( !self._moveInRequest || !self._bytes.isWalkable(m.Yindex-2,m.Xindex) )
+			{
+				self._currDir = 8;
+				return;
+			}
+		}
+		// update movable
+		m.relY =  m.relY - self._stepY;
+		//update map
+		self.tp.mapDown( self._stepY );
+		//swap row
+		if( m.relY == -self._bytes.th )
+		{
+			self._sm.switchRow(m, m.Yindex - 2);
+			self.tp.scroll( isogame.dirs.DOWN,m )
+		}
+	},
+	resolveDown:function(self){
+		var m = self._movable;
+		if( self.isSnapped() )
+		{
+			//if move is no longer requested || next tile is not walkable
+			if( !self._moveInRequest || !self._bytes.isWalkable(m.Yindex+2,m.Xindex) )
+			{
+				self._currDir = 8;
+				return;
+			}
+		}
+		// update movable
+		m.relY =  m.relY + self._stepY;
+		//update map
+		self.tp.mapUp( self._stepY );
+		//swap row
+		if( m.relY == self._bytes.th )
+		{
+			self._sm.switchRow(m, m.Yindex + 2);
+			self.tp.scroll( isogame.dirs.UP,m );
+		}
+	},
+	resolveLeft:function(self){
+		var m = self._movable;
+		if( self.isSnapped() )
+		{
+			//if move is no longer requested || next tile is not walkable
+			if( !self._moveInRequest || !self._bytes.isWalkable(m.Yindex,m.Xindex-1) )
+			{
+				self._currDir = 8;
+				return;
+			}
+		}
+		// update movable
+		m.relX =  m.relX - self._stepX;
+		//update map
+		self.tp.mapRight( self._stepX );
+		//swap col
+		if( m.relX == -self._bytes.tw )
+		{
+			self._sm.switchCol( m, m.Xindex-1 );
+			self.tp.scroll( isogame.dirs.RIGHT,m );
+		}
+	},
+	resolveRight:function(self){
+		var m = self._movable;
+		if( self.isSnapped() )
+		{
+			//if move is no longer requested || next tile is not walkable
+			if( !self._moveInRequest || !self._bytes.isWalkable(m.Yindex,m.Xindex+1) )
+			{
+				self._currDir = 8;
+				return;
+			}
+		}
+		// update movable
+		m.relX =  m.relX + self._stepX;
+		//update map
+		self.tp.mapLeft( self._stepX );
+		//swap col
+		if( m.relX == self._bytes.tw )
+		{
+			self._sm.switchCol( m, m.Xindex+1 );
+			self.tp.scroll( isogame.dirs.LEFT,m );
+		}
+	},
+	resolveLeftUp:function(self){
+		var Xi;
+		var m = self._movable;
+		if( self.isSnapped() )
+		{
+			Xi = m.Xindex;
+			if(m.Yindex%2==1)
+				Xi --;
+			//if move is no longer requested || next tile is not walkable
+			if( !self._moveInRequest || !self._bytes.isWalkable( m.Yindex-1,Xi ) )
+			{
+				self._currDir = 8;
+				return;
+			}
+		}
+		//update movable
+		m.relX = m.relX- self._stepX;
+		m.relY = m.relY - self._stepY;
+		
+		//update map
+		self.tp.mapRightDown( self._stepX, self._stepY );
+		
+		if( m.relX == -self._bytes.th )
+		{
+			Xi  = m.Xindex;
+			if( m.Yindex%2==1)
+			{
+				Xi --;
+			}
+			self._sm.switchColRow( m, m.Yindex-1, Xi );
+			self.tp.scroll( isogame.dirs.RIGHT_DOWN, m );
+		}
+	},
+	resolveLeftDown:function(self) {
+		var m = self._movable;
+		var Xi;
+		if( self.isSnapped() )
+		{
+			Xi = m.Xindex;
+			if(m.Yindex%2==1)
+				Xi --;
+			//if move is no longer requested || next tile is not walkable
+			if( !self._moveInRequest || !self._bytes.isWalkable(m.Yindex+1,Xi) )
+			{
+				self._currDir = 8;
+				return;
+			}
+		}
+		//update movable
+		m.relX = m.relX- self._stepX;
+		m.relY = m.relY+ self._stepY;
+		//update map
+		self.tp.mapRightUp( self._stepX, self._stepY );
+		//swap tile?
+		if( m.relX==-self._bytes.th )
+		{
+			Xi = m.Xindex;
+			if(m.Yindex%2==1)
+			{
+				Xi --;
+			}	
+			self._sm.switchColRow( m, m.Yindex+1, Xi );
+			self.tp.scroll( isogame.dirs.RIGHT_UP, m );
+		}
+	},
+	resolveRightUp:function(self){
+		var Xi;
+		var m = self._movable;
+		if( self.isSnapped() )
+		{
+			Xi = m.Xindex;
+			if(m.Yindex%2==0)
+				Xi ++;
+			//if move is no longer requested || next tile is not walkable
+			if( !self._moveInRequest || !self._bytes.isWalkable(m.Yindex-1,Xi) )
+			{
+				self._currDir = 8;
+				return;
+			}
+		}
+		//update movable
+		m.relX = m.relX+ self._stepX;
+		m.relY = m.relY- self._stepY;
+		//update map
+		self.tp.mapLeftDown( self._stepX, self._stepY );
+		//swap tile?
+		if( m.relX==self._bytes.th )
+		{
+			Xi = m.Xindex;
+			if(m.Yindex%2==0)
+			{
+				Xi ++;
+			}	
+			self._sm.switchColRow( m, m.Yindex-1, Xi );
+			self.tp.scroll( isogame.dirs.LEFT_DOWN, m );
+		}
+	},
+	resolveRightDown:function(self){
+		var Xi;
+		var m = self._movable;
+		if( self.isSnapped() )
+		{
+			Xi = m.Xindex;
+			if(m.Yindex%2==0)
+				Xi ++;
+			//if move is no longer requested || next tile is not walkable
+			if( !self._moveInRequest || !self._bytes.isWalkable(m.Yindex+1,Xi) )
+			{
+				self._currDir = 8;
+				return;
+			}
+		}
+		//update movable
+		m.relX = m.relX+ self._stepX;
+		m.relY = m.relY+ self._stepY;
+		//update map
+		self.tp.mapLeftUp( self._stepX, self._stepY );
+		//swap tile?
+		if( m.relX == self._bytes.th )
+		{
+			Xi = m.Xindex;
+			if(m.Yindex%2==0)
+			{
+				Xi ++;
+			}
+			self._sm.switchColRow( m, m.Yindex+1, Xi );
+			self.tp.scroll( isogame.dirs.LEFT_UP, m );
+		}
+	},
+	stop:function(){
+		this._moveInRequest = false;
+	}
+})
 
 

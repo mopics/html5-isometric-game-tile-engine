@@ -5,27 +5,38 @@ if (! ('isogame' in this)) {
 }
 
 isogame.TilePainter = new Class()({
-	__init__:function( isomap )
+	__init__:function( isomap, drawInfoCanvas )
 	{
 		this.cropChanged = true;
+		this.drawInfoCanvas = drawInfoCanvas;
 		this.map = isomap;
 		this.image = isomap._image;
 		this.floor = isomap._floorCanvas.getContext('2d');
 		this.item  = isomap._itemCanvas.getContext('2d');
-		this.info  = isomap._infoCanvas.getContext('2d');
+		if( isomap._infoCanvas )
+			this.info  = isomap._infoCanvas.getContext('2d');
 		this.bytes = isomap._bytes;
 		this.slices = isomap._data.slices;
+		this.crop   = isomap._crop;
 		this.ycropadjust = 0;
 		this.xcropadjust = 0;
 		this.ymovemapadjust = 0;
 		this.xmovemapadjust = 0;
+		this.md = 0;//isomap._bytes.th;
+		this.scrollShift = 0;
+		this.prevDir = 0;
 	},
-	draw:function( drawInfoCanvas )
+	draw:function()
 	{
-		if( this.cropChanged ) // if crop changed redraw floor-tiles also
-		{
+		
+	    //if( this.cropChanged ) // if crop changed redraw floor-tiles also
+		//{
+			// console.log("cropChanged!");
 			this.floor.clearRect( 0,0,this.map._floorCanvas.width, this.map._floorCanvas.height );
-		}
+			if( this.drawInfoCanvas ){
+				this.info.clearRect( 0,0,this.map._infoCanvas.width, this.map._infoCanvas.height );
+			}
+		//}
 		//always redraw item-tiles & movable-sprites
 		this.item.clearRect( 0,0,this.map._floorCanvas.width, this.map._floorCanvas.height );
 		var s;
@@ -47,13 +58,13 @@ isogame.TilePainter = new Class()({
 					var f = this.bytes.getFloorId();
 					var it= this.bytes.getItemId();
 					
-					if( this.cropChanged )
-					{
-						if(f>-1)
+					//if( this.cropChanged )
+					//{
+						if( f>-1 )
 							this._drawFloorTile(f,x,y);
-						if( drawInfoCanvas )
+						if( this.drawInfoCanvas )
 							this._drawTileIdx( iy, ix, x, y );
-					}
+					//}
 					if(it>-1)
 						this._drawItemTile(it,x,y);
 					
@@ -111,39 +122,154 @@ isogame.TilePainter = new Class()({
 	},
 	mapUp:function( y )
 	{
-		this.yMoveAdjust += y;
+		this.ymovemapadjust -= y;
 	},
 	mapDown:function( y )
 	{
-		this.yMoveAdjust -= y;
+		this.ymovemapadjust += y;
 		
 	},
 	mapLeft:function( x )
 	{
-		this.xMoveAdjust += x;
+		this.xmovemapadjust -= x;
 	},
 	mapRight:function( x )
 	{
-		this.xMoveAdjust -= x;
-	},
-	mapLeftUp:function( x, y )
-	{
-		this.yMoveAdjust += y;
-		this.xMoveAdjust += x;
-	},
-	mapLeftDown:function( x, y )
-	{
-		this.yMoveAdjust -= y;
-		this.xMoveAdjust += x;
-	},
-	mapRightUp:function( x, y )
-	{
-		this.yMoveAdjust += y;
-		this.xMoveAdjust -= x;
+		this.xmovemapadjust += x;
 	},
 	mapRightDown:function( x, y )
 	{
-		this.yMoveAdjust -= y;
-		this.xMoveAdjust -= x;
+		this.ymovemapadjust += y;
+		this.xmovemapadjust += x;
+	},
+	mapRightUp:function( x, y )
+	{
+		this.ymovemapadjust -= y;
+		this.xmovemapadjust += x;
+	},
+	mapLeftDown:function( x, y )
+	{
+		this.ymovemapadjust += y;
+		this.xmovemapadjust -= x;
+	},
+	mapLeftUp:function( x, y )
+	{
+		this.ymovemapadjust -= y;
+		this.xmovemapadjust -= x;
+	},
+	scroll:function( dir, m )
+	{
+		var d;
+		var redraw = false;
+		switch(dir)
+		{
+			case isogame.dirs.DOWN:
+				this.crop.y -= 2;
+				redraw = true;
+				this.ymovemapadjust = 0;
+				break;
+			case isogame.dirs.UP:
+				this.crop.y += 2;
+				redraw = true;
+				this.ymovemapadjust = 0;
+				break;
+			case isogame.dirs.LEFT:
+				this.crop.x += 1;
+				this.xmovemapadjust = this.md;
+				redraw = true;
+				break;
+			case isogame.dirs.RIGHT:
+				this.crop.x -= 1;
+				this.xmovemapadjust = this.md;
+				redraw = true;
+				break;
+			case isogame.dirs.RIGHT_DOWN:
+				redraw = true;
+				if(this.crop.y%2==0)
+				{
+					this.scrollShift = this.prevDir;
+					d=1-this.prevDir;
+					this.md = 0;
+				}
+				else
+				{
+					this.scrollShift = 0;
+					d = 0;
+					this.md = this.map._bytes.th;
+				}
+				this.xmovemapadjust = this.md;
+				this.crop.x -= d;
+				this.ymovemapadjust = 0;
+				this.crop.y -= 1;
+				this.prevDir = 0;
+			break;
+			case isogame.dirs.RIGHT_UP:
+				redraw = true;
+				if(this.crop.y%2==0)
+				{
+					this.scrollShift = this.prevDir;
+					d=1-this.prevDir;
+					this.md = 0;
+				}
+				else
+				{
+					this.scrollShift = 0;
+					d=0;
+					this.md = this.map._bytes.th;
+				}
+				this.xmovemapadjust = this.md;
+				this.crop.x -= d;
+				this.ymovemapadjust = 0;
+				this.crop.y += 1;
+				this.prevDir = 0;
+			break;
+			case isogame.dirs.LEFT_DOWN:
+				redraw = true;
+				if(this.crop.y%2==0)
+				{
+					this.scrollShift = this.prevDir;
+					d = this.prevDir;
+					this.md = 0;
+				}
+				else
+				{
+					this.scrollShift = 0;
+					d = 0;
+					this.md = - this.map._bytes.th;
+				}
+				this.xmovemapadjust = this.md;
+				this.crop.x += d;
+				this.ymovemapadjust = 0;
+				this.crop.y -= 1;
+				this.prevDir = 1;
+			break;
+			case isogame.dirs.LEFT_UP:
+				redraw = true;
+				if( this.crop.y%2==0 )
+				{
+					this.scrollShift = this.prevDir;
+					d = this.prevDir;
+					this.md = 0;//map.th;
+				}
+				else
+				{
+					this.scrollShift = 0;
+					d = 0;
+					this.md = -this.map._bytes.th;
+				}
+				this.xmovemapadjust = this.md;
+				this.crop.x += d;
+				this.ymovemapadjust = 0;
+				this.crop.y +=1;
+				this.prevDir = 1;
+			break;
+		}
+		this.xcropadjust = this.crop.x * this.map._bytes.tw;
+		this.ycropadjust = this.crop.y * this.map._bytes.thh;
+		
+		if(redraw){
+			this.cropChanged = true;
+			this.draw();
+		}
 	}
 });

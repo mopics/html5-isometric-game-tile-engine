@@ -39,7 +39,7 @@
 		<!-- import the engine!                                      [.]  -->
 		
 		<!-- import isomap                                           [s]  -->
-		<script charset="utf-8" type="text/javascript" src="assets/maps/random_forest.js" ></script>
+		<script charset="utf-8" type="text/javascript" src="assets/maps/random_forestBIG.js" ></script>
 		<!-- import isomap                                           [.]  -->
 		
 		
@@ -58,7 +58,6 @@
 			var m2t;
 			var miniMe;
 			var control;
-			var drawInfoCanvas = false;
 			
 			function init(){
 				
@@ -69,7 +68,7 @@
 				
 				
 				//create map
-				map = new isogame.IsoMap( maps.forest, new geom.Rectangle(0,0,30,30), floor, item, info, m2t  );
+				map = new isogame.IsoMap( maps.forest, new geom.Rectangle(0,0,6,10), floor, item, m2t, null );//, info  );
 				
 				//setup miniMe
 				miniMe = new isogame.FirstPerson();
@@ -78,12 +77,13 @@
 				miniMe.addStillSpriteSheet( new isogame.IsoStillSheet( new isogame.PngSheet( "assets/sheets/headSprite.png", new geom.Rectangle(0,0,11,10) ),
 				 							-5, -14 ) );
 				//setup miniMe mover
-				var speed = 1;
-				var mover = new isogame.SpriteMover( miniMe, map, speed );
+				var speed = 2;
+				// var mover = new isogame.SpriteMover( miniMe, map, speed );
+				var mover = new isogame.MapMover( miniMe, map, speed );
 				miniMe.asignMover( mover );
 				
 				// add miniMe to map
-				map.addMovable( miniMe, 5, 2 );
+				map.addMovable( miniMe, 5, 4 );
 				
 				map.onReady = function()
 				{
@@ -99,7 +99,7 @@
 			function updateFrame()
 			{
 				map.update();
-				map.draw( drawInfoCanvas );
+				map.draw();
 				var dir = control.getDirection();
 				
 				if( dir<8 )
@@ -126,9 +126,9 @@
 		</script>
 	</head>
 	<body onLoad="init()">
-	<canvas style="position:absolute" id="floor" width="1200" height="400" >your browser does not support the canvas tag </canvas>
-	<canvas style="position:absolute" id="item" width="1200" height="400" >your browser does not support the canvas tag </canvas>
-	<canvas style="position:absolute" id="info" width="1200" height="400" >your browser does not support the canvas tag </canvas>
+	<canvas style="position:absolute" id="floor" width="500" height="200" >your browser does not support the canvas tag </canvas>
+	<canvas style="position:absolute" id="item" width="500" height="200" >your browser does not support the canvas tag </canvas>
+	<canvas style="position:absolute" id="info" width="500" height="200" >your browser does not support the canvas tag </canvas>
     <canvas id="m2t" width="64" height="32" >your browser does not support the canvas tag </canvas>
 	</body>
 </html>

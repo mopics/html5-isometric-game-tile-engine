@@ -2,22 +2,22 @@ var maps = {}
 maps.getTiles= function() {
    _tiles=[];
    for(x=0;x<100;x+=1) {
-      for(y=0;y<100;y+=1) {
+      for(y=0;y<400;y+=1) {
         
-        itemId=parseInt(Math.random()*3);
-        if(itemId>1) {
-            itemid=2;
+        var random = parseInt(Math.random()*20);
+        if( random>18) {
+			
             _tiles.push({
               "_yindex": y,
               "_xindex": x,
-              "_floorid": 0,
-              "_itemid":itemid
+              "_floorid": 1,
+              "_itemid":2
              });
         } else {
           _tiles.push({
             "_yindex": y,
             "_xindex": x,
-            "_floorid": 0
+            "_floorid": 1
            });
         }
       }   
