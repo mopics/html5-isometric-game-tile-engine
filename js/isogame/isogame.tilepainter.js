@@ -18,10 +18,10 @@ isogame.TilePainter = new Class()({
 		this.bytes = isomap._bytes;
 		this.slices = isomap._data.slices;
 		this.crop   = isomap._crop;
-		this.ycropadjust = 0;
-		this.xcropadjust = 0;
-		this.ymovemapadjust = 0;
-		this.xmovemapadjust = 0;
+		this.yCropTranslate = 0;
+		this.xCropTranslate = 0;
+		this.xCanvasTranslateAmount = 0;
+		this.yCanvasTranslateAmount = 0;
 		this.md = 0;//isomap._bytes.th;
 		this.scrollShift = 0;
 		this.prevDir = 0;
@@ -29,16 +29,17 @@ isogame.TilePainter = new Class()({
 	draw:function()
 	{
 		
-	    //if( this.cropChanged ) // if crop changed redraw floor-tiles also
-		//{
-			// console.log("cropChanged!");
+	    if( this.cropChanged ) // if crop changed redraw floor-tiles also
+		{
+			//console.log("cropChanged!");
 			this.floor.clearRect( 0,0,this.map._floorCanvas.width, this.map._floorCanvas.height );
 			if( this.drawInfoCanvas ){
 				this.info.clearRect( 0,0,this.map._infoCanvas.width, this.map._infoCanvas.height );
 			}
-		//}
+		}
 		//always redraw item-tiles & movable-sprites
 		this.item.clearRect( 0,0,this.map._floorCanvas.width, this.map._floorCanvas.height );
+		this.floor.restore();
 		var s;
 		var crop = this.map._crop;
 		//get movables residing in cropped area in a multidimensional array 
@@ -53,18 +54,18 @@ isogame.TilePainter = new Class()({
 					this.bytes.movePosTo(iy,ix);
 					var coords = this.bytes.getCoords();
 					//var z = coords.z;
-					var x = coords.x- this.xcropadjust + this.xmovemapadjust;
-					var y = coords.y- this.ycropadjust + this.ymovemapadjust;
+					var x = coords.x- this.xCropTranslate;// + this.xMoveMapTranslate;
+					var y = coords.y- this.yCropTranslate;// + this.yMoveMapTranslate;
 					var f = this.bytes.getFloorId();
 					var it= this.bytes.getItemId();
 					
-					//if( this.cropChanged )
-					//{
+					if( this.cropChanged )
+					{
 						if( f>-1 )
 							this._drawFloorTile(f,x,y);
 						if( this.drawInfoCanvas )
 							this._drawTileIdx( iy, ix, x, y );
-					//}
+					}
 					if(it>-1)
 						this._drawItemTile(it,x,y);
 					
@@ -116,47 +117,29 @@ isogame.TilePainter = new Class()({
 		var tilecoords = this.bytes.getCoords();
 		var mx = tilecoords.x  + m.relX + this.bytes.th;
 		var my = tilecoords.y  + m.relY + this.bytes.thh;
-		var xc = mx - this.xcropadjust + this.xmovemapadjust;
-		var yc = my - this.ycropadjust + this.ymovemapadjust;
+		var xc = mx - this.xCropTranslate;// + this.xMoveMapTranslate;
+		var yc = my - this.yCropTranslate;// + this.yMoveMapTranslate;
 		m.draw( this.item, xc, yc );
 	},
-	mapUp:function( y )
+	
+	/* All canvas.context translations must be done be this function! */
+	setMapMoveTranslate:function( x, y )
 	{
-		this.ymovemapadjust -= y;
+		/*
+		this.floor.translate( x, y );
+		this.item.translate( x, y );
+		if( this.info )
+			this.info.translate( x, y );
+		*/
+		this.xCanvasTranslateAmount += x;
+		this.yCanvasTranslateAmount += y;
+		//TODO pass canvas-id's to this class
+		$("#floor").attr( "style", "position:absolute; top:"+this.yCanvasTranslateAmount+"px; left:"+this.xCanvasTranslateAmount+"px");
+		$("#item").attr( "style", "position:absolute; top:"+this.yCanvasTranslateAmount+"px; left:"+this.xCanvasTranslateAmount+"px");
+		if( this.drawInfoCanvas )
+			$("#info").attr( "style", "position:absolute; top:"+this.yCanvasTranslateAmount+"px; left:"+this.xCanvasTranslateAmount+"px");
 	},
-	mapDown:function( y )
-	{
-		this.ymovemapadjust += y;
-		
-	},
-	mapLeft:function( x )
-	{
-		this.xmovemapadjust -= x;
-	},
-	mapRight:function( x )
-	{
-		this.xmovemapadjust += x;
-	},
-	mapRightDown:function( x, y )
-	{
-		this.ymovemapadjust += y;
-		this.xmovemapadjust += x;
-	},
-	mapRightUp:function( x, y )
-	{
-		this.ymovemapadjust -= y;
-		this.xmovemapadjust += x;
-	},
-	mapLeftDown:function( x, y )
-	{
-		this.ymovemapadjust += y;
-		this.xmovemapadjust -= x;
-	},
-	mapLeftUp:function( x, y )
-	{
-		this.ymovemapadjust -= y;
-		this.xmovemapadjust -= x;
-	},
+	
 	scroll:function( dir, m )
 	{
 		var d;
@@ -166,21 +149,21 @@ isogame.TilePainter = new Class()({
 			case isogame.dirs.DOWN:
 				this.crop.y -= 2;
 				redraw = true;
-				this.ymovemapadjust = 0;
+				this.setMapMoveTranslate( 0, -this.yCanvasTranslateAmount );
 				break;
 			case isogame.dirs.UP:
 				this.crop.y += 2;
 				redraw = true;
-				this.ymovemapadjust = 0;
+				this.setMapMoveTranslate( 0, -this.yCanvasTranslateAmount );
 				break;
 			case isogame.dirs.LEFT:
 				this.crop.x += 1;
-				this.xmovemapadjust = this.md;
+				this.setMapMoveTranslate( -this.xCanvasTranslateAmount + this.md, 0 );
 				redraw = true;
 				break;
 			case isogame.dirs.RIGHT:
 				this.crop.x -= 1;
-				this.xmovemapadjust = this.md;
+				this.setMapMoveTranslate( -this.xCanvasTranslateAmount + this.md, 0 );
 				redraw = true;
 				break;
 			case isogame.dirs.RIGHT_DOWN:
@@ -197,15 +180,14 @@ isogame.TilePainter = new Class()({
 					d = 0;
 					this.md = this.map._bytes.th;
 				}
-				this.xmovemapadjust = this.md;
+				this.setMapMoveTranslate( -this.xCanvasTranslateAmount + this.md, -this.yCanvasTranslateAmount );
 				this.crop.x -= d;
-				this.ymovemapadjust = 0;
 				this.crop.y -= 1;
 				this.prevDir = 0;
-			break;
+				break;
 			case isogame.dirs.RIGHT_UP:
 				redraw = true;
-				if(this.crop.y%2==0)
+				if( this.crop.y%2==0 )
 				{
 					this.scrollShift = this.prevDir;
 					d=1-this.prevDir;
@@ -217,12 +199,11 @@ isogame.TilePainter = new Class()({
 					d=0;
 					this.md = this.map._bytes.th;
 				}
-				this.xmovemapadjust = this.md;
+				this.setMapMoveTranslate(  -this.xCanvasTranslateAmount + this.md, -this.yCanvasTranslateAmount );
 				this.crop.x -= d;
-				this.ymovemapadjust = 0;
 				this.crop.y += 1;
 				this.prevDir = 0;
-			break;
+				break;
 			case isogame.dirs.LEFT_DOWN:
 				redraw = true;
 				if(this.crop.y%2==0)
@@ -235,21 +216,20 @@ isogame.TilePainter = new Class()({
 				{
 					this.scrollShift = 0;
 					d = 0;
-					this.md = - this.map._bytes.th;
+					this.md = -this.map._bytes.th;
 				}
-				this.xmovemapadjust = this.md;
+				this.setMapMoveTranslate( -this.xCanvasTranslateAmount + this.md, -this.yCanvasTranslateAmount );
 				this.crop.x += d;
-				this.ymovemapadjust = 0;
 				this.crop.y -= 1;
 				this.prevDir = 1;
-			break;
+				break;
 			case isogame.dirs.LEFT_UP:
 				redraw = true;
 				if( this.crop.y%2==0 )
 				{
 					this.scrollShift = this.prevDir;
 					d = this.prevDir;
-					this.md = 0;//map.th;
+					this.md = 0;
 				}
 				else
 				{
@@ -257,15 +237,14 @@ isogame.TilePainter = new Class()({
 					d = 0;
 					this.md = -this.map._bytes.th;
 				}
-				this.xmovemapadjust = this.md;
+				this.setMapMoveTranslate( -this.xCanvasTranslateAmount + this.md, -this.yCanvasTranslateAmount );
 				this.crop.x += d;
-				this.ymovemapadjust = 0;
 				this.crop.y +=1;
 				this.prevDir = 1;
-			break;
+				break;
 		}
-		this.xcropadjust = this.crop.x * this.map._bytes.tw;
-		this.ycropadjust = this.crop.y * this.map._bytes.thh;
+		this.xCropTranslate = this.crop.x * this.map._bytes.tw;
+		this.yCropTranslate = this.crop.y * this.map._bytes.thh;
 		
 		if(redraw){
 			this.cropChanged = true;

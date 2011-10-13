@@ -61,14 +61,15 @@
 			
 			function init(){
 				
-				floor = document.getElementById('floor')
-				item = document.getElementById('item');
-				m2t  = document.getElementById('m2t');
-				info = document.getElementById('info');
+				floor = $("#floor")[0];
+				item = $("#item")[0];
+				m2t  = $("#m2t")[0];
+				info = $("#info")[0];
 				
 				
 				//create map
-				map = new isogame.IsoMap( maps.forest, new geom.Rectangle(0,0,6,10), floor, item, m2t, null );//, info  );
+				map = new isogame.IsoMap( maps.forest, new geom.Rectangle(0,0,6,15), floor, item, m2t, null );//info  );
+				// calculate canvas width/heigth like this : width=(crop.width+2)*tw, height=(crop.height+2)*thh
 				
 				//setup miniMe
 				miniMe = new isogame.FirstPerson();
@@ -83,7 +84,7 @@
 				miniMe.asignMover( mover );
 				
 				// add miniMe to map
-				map.addMovable( miniMe, 5, 4 );
+				map.addMovable( miniMe, 8, 3 );
 				
 				map.onReady = function()
 				{
@@ -126,9 +127,15 @@
 		</script>
 	</head>
 	<body onLoad="init()">
-	<canvas style="position:absolute" id="floor" width="500" height="200" >your browser does not support the canvas tag </canvas>
-	<canvas style="position:absolute" id="item" width="500" height="200" >your browser does not support the canvas tag </canvas>
-	<canvas style="position:absolute" id="info" width="500" height="200" >your browser does not support the canvas tag </canvas>
-    <canvas id="m2t" width="64" height="32" >your browser does not support the canvas tag </canvas>
+	<div id="gameholder"  style="position:absolute" >
+		<canvas id="m2t" style="position:absolute"width="64" height="32" >your browser does not support the canvas tag </canvas>
+		<canvas id="floor" style="position:absolute" width="256" height="136" >your browser does not support the canvas tag </canvas>
+		<canvas id="item" style="position:absolute"width="256" height="136" >your browser does not support the canvas tag </canvas>
+		<canvas id="info" style="position:absolute"width="256" height="136" >your browser does not support the canvas tag </canvas>
+    	<!--<div id="masktop" style="position:absolute; background-color:#006600; width:500px; height:32px; top:-16px; left:-32px" />
+		<div id="maskbot" style="position:absolute; background-color:#006600; width:400px; height:40px; top:136px;" />
+		<div id="maskleft" style="position:absolute; background-color:#006600; width:64px; height:200px; left:0px; top:-116px" />
+		<div id="maskright" style="position:absolute; background-color:#006600; width:108px; height:200px; left:240px; top:0px" />-->
+	</div>
 	</body>
 </html>

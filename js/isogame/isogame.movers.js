@@ -405,7 +405,7 @@ isogame.MapMover = new Class( isogame.AMover ) ({
 		// update movable
 		m.relY =  m.relY - self._stepY;
 		//update map
-		self.tp.mapDown( self._stepY );
+		self.tp.setMapMoveTranslate( 0, self._stepY );
 		//swap row
 		if( m.relY == -self._bytes.th )
 		{
@@ -427,7 +427,7 @@ isogame.MapMover = new Class( isogame.AMover ) ({
 		// update movable
 		m.relY =  m.relY + self._stepY;
 		//update map
-		self.tp.mapUp( self._stepY );
+		self.tp.setMapMoveTranslate( 0, -self._stepY );
 		//swap row
 		if( m.relY == self._bytes.th )
 		{
@@ -449,7 +449,7 @@ isogame.MapMover = new Class( isogame.AMover ) ({
 		// update movable
 		m.relX =  m.relX - self._stepX;
 		//update map
-		self.tp.mapRight( self._stepX );
+		self.tp.setMapMoveTranslate( self._stepX, 0 );
 		//swap col
 		if( m.relX == -self._bytes.tw )
 		{
@@ -471,7 +471,7 @@ isogame.MapMover = new Class( isogame.AMover ) ({
 		// update movable
 		m.relX =  m.relX + self._stepX;
 		//update map
-		self.tp.mapLeft( self._stepX );
+		self.tp.setMapMoveTranslate( -self._stepX, 0 );
 		//swap col
 		if( m.relX == self._bytes.tw )
 		{
@@ -499,7 +499,7 @@ isogame.MapMover = new Class( isogame.AMover ) ({
 		m.relY = m.relY - self._stepY;
 		
 		//update map
-		self.tp.mapRightDown( self._stepX, self._stepY );
+		self.tp.setMapMoveTranslate( self._stepX, self._stepY );
 		
 		if( m.relX == -self._bytes.th )
 		{
@@ -531,7 +531,7 @@ isogame.MapMover = new Class( isogame.AMover ) ({
 		m.relX = m.relX- self._stepX;
 		m.relY = m.relY+ self._stepY;
 		//update map
-		self.tp.mapRightUp( self._stepX, self._stepY );
+		self.tp.setMapMoveTranslate( self._stepX, -self._stepY );
 		//swap tile?
 		if( m.relX==-self._bytes.th )
 		{
@@ -563,7 +563,7 @@ isogame.MapMover = new Class( isogame.AMover ) ({
 		m.relX = m.relX+ self._stepX;
 		m.relY = m.relY- self._stepY;
 		//update map
-		self.tp.mapLeftDown( self._stepX, self._stepY );
+		self.tp.setMapMoveTranslate( -self._stepX, self._stepY );
 		//swap tile?
 		if( m.relX==self._bytes.th )
 		{
@@ -595,7 +595,7 @@ isogame.MapMover = new Class( isogame.AMover ) ({
 		m.relX = m.relX+ self._stepX;
 		m.relY = m.relY+ self._stepY;
 		//update map
-		self.tp.mapLeftUp( self._stepX, self._stepY );
+		self.tp.setMapMoveTranslate( -self._stepX, -self._stepY );
 		//swap tile?
 		if( m.relX == self._bytes.th )
 		{
