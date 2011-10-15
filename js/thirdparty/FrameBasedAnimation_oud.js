@@ -8,8 +8,7 @@ FrameBasedAnimation.prototype = {
         version: 'versie beta:0.0.1',
         state: "beta",
         date: "2010-02-04",
-        author: "Robbert Streng",
-        email: "dev@robbertstreng.nl"
+        author: "Robbert Streng"
     },
     ticker: 1,
     frameCount: 1,

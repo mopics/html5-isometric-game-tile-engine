@@ -1,11 +1,9 @@
-Class = js.lang.Class;
-
 if (! ('isogame' in this)) {
     this.isogame = {};
 }
 
-isogame.IsoMap = new Class()({
-	__init__:function( mapData, cropRect, floorCanvas, itemCanvas, m2tCanvas, infoCanvas )
+dojo.declare( 'isogame.IsoMap', null, {
+	constructor:function( mapData, cropRect, floorCanvas, itemCanvas, m2tCanvas, infoCanvas )
 	{
 		this._data = mapData;
 		this._bytes = new isogame.MapBytes( mapData );
@@ -31,7 +29,7 @@ isogame.IsoMap = new Class()({
         }
         this._image.src = this._data.image;
 	},
-	addMovable:function( m, yi, xi, moveSpeed )
+	addMovable:function( m, xi, yi, moveSpeed )
 	{
 		m.initialYindex = m.Yindex = yi;
 		m.initialXindex = m.Xindex = xi;
@@ -49,9 +47,8 @@ isogame.IsoMap = new Class()({
 	
 });
 
-isogame.MapBytes = new Class() (
-{
-	__init__:function( data )
+dojo.declare( 'isogame.MapBytes', null,{
+	constructor:function( data )
 	{
 		this.data = data;
 		this.actions = new Array();
@@ -202,11 +199,10 @@ isogame.MapBytes = new Class() (
 		this.movePosTo(Y,X);
 		return !this.obstructs[this.position];
 	}
-}
-);
+});
 
-isogame.Mouse2Tile = new Class() ({
-	__init__:function( tw, rows, cols, context ) {
+dojo.declare('isogame.Mouse2Tile', null, {
+	constructor:function( tw, rows, cols, context ) {
 		this.TOPLEFT = "#ff0000";
 		this.TOPRIGHT = "#00ff00";
 		this.BOTLEFT = "#0000ff";

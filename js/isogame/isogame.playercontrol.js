@@ -1,5 +1,3 @@
-Class = js.lang.Class;
-
 if (! ('isogame' in this)) {
     this.isogame = {};
 }
@@ -11,27 +9,9 @@ isogame._keydirs[39] = [ false, isogame.dirs.RIGHT ];
 isogame._keydirs[40] = [ false, isogame.dirs.DOWN ];
 
 
-isogame.KeyControl = new Class()({
-	__init__:function()
+dojo.declare( 'isogame.KeyControl', null, {
+	constructor:function()
 	{
-		/*if (document.addEventListener)
-		{
-			//document.addEventListener("keydown",this.keypress,false);
-			document.addEventListener("keypress",this._keypress,false);
-			document.addEventListener("keyup",this._keyup,false);
-		}
-		else if ( document.attachEvent )
-		{
-			//document.attachEvent("onkeydown", this.keypress);
-			document.attachEvent("onkeypress", this._keypress);
-			document.attachEvent("onkeyup", this._keyup);
-		}
-		else
-		{
-			//document.onkeydown= this.keypress;
-			document.onkeypress= this._keypress;
-			document.onkeyup= this._keyup;
-		}*/
 		$(document).keydown( this._keypress );
 		$(document).keyup( this._keyup );
 	},

@@ -1,37 +1,32 @@
 /**
 TODOs : implement rotation scaling
 */
-Class = js.lang.Class;
-
 if (! ('sprites' in this)) {
     this.sprites = {};
 }
-
-sprites.Sprite = new Class()({
-    __init__: function() {
-        //graphic related
-        this._image = null;
-        this._imageLoaded = false;
-        this._imageData = null;
-        this._spritesheet = null;
-        this._childs = new js.util.ArrayList();
-        //coords & physical props
-        this._x = this._px = 0;
-        this._y = this._py = 0;
-        this._z = this._pz = 0;
-        this._width = this._pwidth = 0;
-        this._height = this._pheight = 0;
-		this.visible = true;
-        //_rotation:0,
-        this._scaleX = this._pscaleX = 1;
-        this._scaleY = this._pscaleY = 1;
-        this._alpha = this._palpha = 1;
-        //animation related
-        this._isPlaying = false;
-        this.currFrame = 1;
-        this.numFrames = 1;
-
-    },
+dojo.declare( 'sprites.Sprite', null,{
+	//graphic related members
+	_image:null,
+	_imageLoaded:false,
+	_imageData:null,
+	_spriteSheet:null,
+	_childs:new collections.ArrayList(),
+	//coord & physical prop members
+	_x:0,_px:0,
+	_y:0,_py:0,
+	_z:0,_pz:0,
+	_width:0, _pwidth:0,
+	_height:0, _pheight:0,
+	visible:true,
+	// _rotation:0,
+	_scaleX:1,_pscaleX:1,
+	_scaleY:1,_pscaleY:1,
+	_alpha:1,_palpha:1,
+	//animation related members
+	_isPlaying:false,
+	_currFrame:1,
+	_numFrames:1,
+	constructor:function(){},
     setImage: function(url, w, h)
     {
         //Load the image object in JS, then apply to canvas onload
@@ -159,7 +154,7 @@ sprites.Sprite = new Class()({
     },
 	_updateFrameCounter:function(){
 		if( !this._isPlaying || this.numFrames==1 ) return;
-		
+	
 		if( this.currFrame==this.numFrames)
 		{
 			this.currFrame = 1;
@@ -172,9 +167,9 @@ sprites.Sprite = new Class()({
     draw: function(context, parent)
     {
 		if( !this.visible ) return;
-		
+	
 		this._draw(context, parent);
-		
+	
 		if( this._childs.size()==0 ) return;
         //draw kids
 		var cxt = context;
@@ -187,13 +182,17 @@ sprites.Sprite = new Class()({
     }
 });
 
-sprites.SpriteSheet = new Class()({
-    __init__: function(src, sliceRect)
+dojo.declare( 'sprites.SpriteSheet', null, {
+	_src:null,
+	_rect:null,
+	_image:new Image(),
+	_imageLoaded:false,
+	frames:new collections.ArrayList(),
+    constructor: function(src, sliceRect)
     {
         this._src = src;
         this._rect = sliceRect;
         //Load the image object in JS, then apply to canvas onload
-        this._image = new Image();
         this._imageLoaded = false;
         var self = this;
         this._image.onload = function()

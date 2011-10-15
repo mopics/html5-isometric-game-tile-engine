@@ -1,15 +1,18 @@
-js.util = (js.util || {});
+if (! ('collections' in this)) {
+    this.collections = {};
+}
 
 //  TODO: <generics>
 //  http://java.sun.com/j2se/1.4.2/docs/api/java/util/ArrayList.html
-js.util.ArrayList = new js.lang.Class()  ({
+dojo.declare( 'collections.ArrayList', null, {
     /** Utility class providing common java-like array-list functionality to help keep code D-R-Y. **/
-    __init__ : function( array )  {
+	_array:null,
+    constructor : function( array )  {
         /** Initializer for ArrayList **/
         this._array = (array ? array.slice() : []);
     },
-
-    add : function( element )  {
+	
+	add : function( element )  {
         /** Add given element to this list. **/
         this._array.push( element );
     },
@@ -161,23 +164,21 @@ js.util.ArrayList = new js.lang.Class()  ({
         });
     }
 })
-.Static({
-    Iterate : function( list, callback )  {
-        /** Iterate given list, invoking given callback for each element.
-            Helper method to avoid the requirement to instantiate this class for one-off use-cases. **/
-        js.util.ArrayList.prototype.iterate.call( { _array : list }, callback );
-    }
-});
+collections.ArrayList.Iterate = function( list, callback )  {
+    /** Iterate given list, invoking given callback for each element.
+        Helper method to avoid the requirement to instantiate this class for one-off use-cases. **/
+    js.util.ArrayList.prototype.iterate.call( { _array : list }, callback );
+};
 
-js.util.Set = new js.lang.Class( js.util.ArrayList )  ({
+dojo.declare('collections.Set', collections.ArrayList ,{
     /** Utility class providing common java-like array-list functionality. 
         Elements are only added if they do not already exist within this list. **/
-    __init__ : function( array )  {
+    constructor : function( array )  {
         /** Initializer for Set. **/
-        js.util.ArrayList.__init__.call( this );
+        collections.ArrayList.constructor.call( this );
 
         if( array )  {
-            this.addAll( new js.util.ArrayList(array) );
+            this.addAll( new collections.ArrayList(array) );
         }
     },
 

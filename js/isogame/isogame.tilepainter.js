@@ -1,11 +1,9 @@
-Class = js.lang.Class;
-
 if (! ('isogame' in this)) {
     this.isogame = {};
 }
 
-isogame.TilePainter = new Class()({
-	__init__:function( isomap, drawInfoCanvas )
+dojo.declare( 'isogame.TilePainter', null, {
+	constructor:function( isomap, drawInfoCanvas )
 	{
 		this.cropChanged = true;
 		this.drawInfoCanvas = drawInfoCanvas;

@@ -1,14 +1,12 @@
-Class = js.lang.Class;
-
 if (! ('isogame' in this)) {
     this.isogame = {};
 }
 
-isogame.SpriteManager = new Class()({
-	__init__:function( isomap )
+dojo.declare( 'isogame.SpriteManager', null, {
+	constructor:function( isomap )
 	{
 		this.map = isomap;
-		this.movables = new js.util.ArrayList(); // list of movable sprites on map
+		this.movables = new collections.ArrayList(); // list of movable sprites on map
 	},
 	add:function( m )
 	{

@@ -12,20 +12,17 @@
 		<title>index</title>
 		<meta name="generator" content="TextMate http://macromates.com/">
 		<meta name="author" content="Peter Dijkstra">
-		<!-- Date: 2011-09-10 -->
-		s
-		<!-- import jquery [ used by isogame.KeyControl class ]       [s]-->
+		<!-- import jquery [ used by isogame.KeyControl class ] -->
 		<script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery-latest.js"></script>
-		<!-- import jquery [ used by isogame.KeyControl class ]       [.]-->
+		<!-- import dojo [ used for class/inheritence simulation and other handy stuff ] -->
+			<!-- online link ( check : http://dev.aol.com/dojo/  for dojo-versions )
+				<script type="text/javascript" src="http://o.aolcdn.com/dojo/1.6/dojo/dojo.xd.js"></script>
+			-->
+			<script type="text/javascript" src="js/dojo-base/dojo.js"></script>
 		
-		<!-- import javascript-classes   [for OOP functionality]      [s]  -->
-		<script type="text/javascript" charset="utf-8" src="js/classes/js.lang.Class-1.0-min.js" ></script>
-		<script type="text/javascript" charset="utf-8" src="js/classes/js.util.ArrayList-1.0-min.js" ></script>
-		<!--<script type="text/javascript" charset="utf-8" src="js/classes/js.events.EventDispatcher-1.0-min.js" ></script>-->
-		<!-- import javascript-classes   [for OOP functionality]     [.]  -->
-		
-		<!-- import the engine!                                      [s]  -->
+		<!-- import the engine! -->
 		<script charset="utf-8" type="text/javascript" src="js/thirdparty/FrameBasedAnimation_oud.js" ></script>
+		<script charset="utf-8" type="text/javascript" src="js/collections/array.js"></script>
 		<script charset="utf-8" type="text/javascript" src="js/pixfonts/pixfonts.js" ></script>
 		<script charset="utf-8" type="text/javascript" src="js/geom/geom.js" ></script>
 		<script charset="utf-8" type="text/javascript" src="js/graphics/sprites.js" ></script>
@@ -36,12 +33,9 @@
 		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.sprites.js" ></script>
 		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.tilepainter.js" ></script>
 		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.movers.js" ></script>
-		<!-- import the engine!                                      [.]  -->
 		
-		<!-- import isomap                                           [s]  -->
+		<!-- import isomap -->
 		<script charset="utf-8" type="text/javascript" src="assets/maps/random_forestBIG.js" ></script>
-		<!-- import isomap                                           [.]  -->
-		
 		
 		<script type="text/javascript" charset="utf-8" >
 		
@@ -59,7 +53,21 @@
 			var miniMe;
 			var control;
 			
-			function init(){
+			dojo.addOnLoad(function(){
+				
+				mapCrop = new geom.Rectangle(2,5,20,15);
+				midTile = new geom.Point( parseInt((mapCrop.x+mapCrop.width)/2),
+										  parseInt((mapCrop.y+mapCrop.height)/2) );
+				tw = maps.forest.tileWidth;
+				th = tw/2;
+				thh = th/2;
+				// jqeury create canvases
+				$('body').append('<canvas id="m2t" style="position:absolute"width="64" height="32" >your browser does not support the canvas tag </canvas>');
+				$('body').append('<canvas id="floor" style="position:absolute" width="'+(mapCrop.width+2)*tw+'" height="'+(mapCrop.height+2)*thh+'" >your browser does not support the canvas tag </canvas>');
+				$('body').append('<canvas id="item" style="position:absolute" width="'+(mapCrop.width+2)*tw+'" height="'+(mapCrop.height+2)*thh+'" >your browser does not support the canvas tag </canvas>');
+				$('body').append('<canvas id="info" style="position:absolute" width="'+(mapCrop.width+2)*tw+'" height="'+(mapCrop.height+2)*thh+'" >your browser does not support the canvas tag </canvas>');
+				// TODO: jqeury create mask-divs
+				// TODO: initialize crop in isogame.TilePainter
 				
 				floor = $("#floor")[0];
 				item = $("#item")[0];
@@ -68,7 +76,7 @@
 				
 				
 				//create map
-				map = new isogame.IsoMap( maps.forest, new geom.Rectangle(0,0,6,15), floor, item, m2t, null );//info  );
+				map = new isogame.IsoMap( maps.forest, mapCrop, floor, item, m2t, null );//info  );
 				// calculate canvas width/heigth like this : width=(crop.width+2)*tw, height=(crop.height+2)*thh
 				
 				//setup miniMe
@@ -78,25 +86,26 @@
 				miniMe.addStillSpriteSheet( new isogame.IsoStillSheet( new isogame.PngSheet( "assets/sheets/headSprite.png", new geom.Rectangle(0,0,11,10) ),
 				 							-5, -14 ) );
 				//setup miniMe mover
-				var speed = 2;
+				var speed = 1;
 				// var mover = new isogame.SpriteMover( miniMe, map, speed );
 				var mover = new isogame.MapMover( miniMe, map, speed );
 				miniMe.asignMover( mover );
 				
 				// add miniMe to map
-				map.addMovable( miniMe, 8, 3 );
+				map.addMovable( miniMe, midTile.x, midTile.y, 1 );
 				
 				map.onReady = function()
 				{
 					control = new isogame.KeyControl();
 					/** create Robbert's player **/
 					player_oud = new FrameBasedAnimation();
-					player_oud.setFrameSpeed( 30 );
+					player_oud.setFrameSpeed( 60 );
 					player_oud.myTickerEvent.unsubscribe( updateFrame );
 					player_oud.myTickerEvent.subscribe( updateFrame );
 				}
 				map.setup();
-			}
+			});
+			
 			function updateFrame()
 			{
 				map.update();
@@ -126,16 +135,10 @@
 			
 		</script>
 	</head>
-	<body onLoad="init()">
-	<div id="gameholder"  style="position:absolute" >
-		<canvas id="m2t" style="position:absolute"width="64" height="32" >your browser does not support the canvas tag </canvas>
-		<canvas id="floor" style="position:absolute" width="256" height="136" >your browser does not support the canvas tag </canvas>
-		<canvas id="item" style="position:absolute"width="256" height="136" >your browser does not support the canvas tag </canvas>
-		<canvas id="info" style="position:absolute"width="256" height="136" >your browser does not support the canvas tag </canvas>
-    	<!--<div id="masktop" style="position:absolute; background-color:#006600; width:500px; height:32px; top:-16px; left:-32px" />
+	<body>
+		<!--<div id="masktop" style="position:absolute; background-color:#006600; width:500px; height:32px; top:-16px; left:-32px" />
 		<div id="maskbot" style="position:absolute; background-color:#006600; width:400px; height:40px; top:136px;" />
 		<div id="maskleft" style="position:absolute; background-color:#006600; width:64px; height:200px; left:0px; top:-116px" />
 		<div id="maskright" style="position:absolute; background-color:#006600; width:108px; height:200px; left:240px; top:0px" />-->
-	</div>
 	</body>
 </html>

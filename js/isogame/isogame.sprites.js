@@ -1,12 +1,9 @@
-Class = js.lang.Class;
-
 if (! ('isogame' in this)) {
     this.isogame = {};
 }
 
-
-isogame.Movable = new Class()({
-	__init__:function()
+dojo.declare( 'isogame.Movable', null, {
+	constructor:function()
 	{
 		this.animatedSprites = new Array();
 		this.stillSprites = new Array();
@@ -85,25 +82,18 @@ isogame.Movable = new Class()({
 	getMover:function(){  return this.mover; }
 });
 
-//TODO create firstPerson movable and enemy movable
-isogame.FirstPerson = new Class( isogame.Movable )({  // extends Movable
-	__init__:function()
-	{
-		isogame.Movable.__init__.call(this); // super constructor call
-	}
+dojo.declare('isogame.FirstPerson', [isogame.Movable], {  // extends Movable
+	constructor:function(){}
 });
-isogame.Enemy = new Class( isogame.Movable )({
-	__init__:function()
-	{
-		isogame.Movable.__init__.call(this);
-	}
+dojo.declare('isogame.Enemy', [isogame.Movable], {
+	constructor:function(){}
 });
 
 
 
 // isometric sprite sheets
-isogame.AIsoSheet = new Class()({
-	__init__:function( sheet, ox, oy )
+dojo.declare( 'isogame.AIsoSheet', null, {
+	constructor:function( sheet, ox, oy )
 	{
 		this._visible = true;
 		this._stopped = true;
@@ -153,10 +143,9 @@ isogame.AIsoSheet = new Class()({
 	}
 });
 
-isogame.IsoAnimationSheet = new Class(isogame.AIsoSheet)({
-	__init__:function( sheet, ox, oy, framesPerDir )
+dojo.declare( 'isogame.IsoAnimationSheet', [isogame.AIsoSheet], {
+	constructor:function( sheet, ox, oy, framesPerDir )
 	{
-		isogame.AIsoSheet.__init__.call( this, sheet, ox, oy );
 		this._framesPerDir = framesPerDir;
 	},
 	update:function()
@@ -184,11 +173,8 @@ isogame.IsoAnimationSheet = new Class(isogame.AIsoSheet)({
 		context.drawImage( this._sheet._image, rect.x, rect.y, rect.width, rect.height, ox, oy, rect.width, rect.height );
 	},
 });
-isogame.IsoStillSheet = new Class(isogame.AIsoSheet)({
-	__init__:function( sheet, ox, oy )
-	{
-		isogame.AIsoSheet.__init__.call( this, sheet, ox, oy );
-	},
+dojo.declare( 'isogame.IsoStillSheet', [isogame.AIsoSheet], {
+	constructor:function( sheet, ox, oy ){},
 	draw:function( context, ox, oy )
 	{
 		if ( !this._visible )
@@ -200,8 +186,8 @@ isogame.IsoStillSheet = new Class(isogame.AIsoSheet)({
 	}
 });
 
-isogame.PngSheet = new Class()({
-    __init__: function(src, sliceRect)
+dojo.declare( 'isogame.PngSheet', null, {
+    constructor: function(src, sliceRect)
     {
         this._src = src;
         this._rect = sliceRect;

@@ -5,7 +5,11 @@ maps.getTiles= function() {
       for(y=0;y<400;y+=1) {
         
         var random = parseInt(Math.random()*20);
-        if( random>18) {
+		var randomFloorId = parseInt(Math.random()*5);
+		if( randomFloorId>1 ){
+			randomFloorId = 1;
+		}
+        if( random>16) {
 			
             _tiles.push({
               "_yindex": y,
@@ -17,7 +21,7 @@ maps.getTiles= function() {
           _tiles.push({
             "_yindex": y,
             "_xindex": x,
-            "_floorid": 1
+            "_floorid": randomFloorId
            });
         }
       }   

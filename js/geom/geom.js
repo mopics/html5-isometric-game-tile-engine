@@ -1,41 +1,40 @@
-Class = js.lang.Class;
-
 if (! ('geom' in this)) {
     this.geom = {};
 }
 
-geom.Rectangle = new Class()({
-	__init__:function(x,y,w,h)
+dojo.declare(
+	'geom.Rectangle',
+	null,
 	{
-		if( typeof x=='undefined' )
-			this.x = 0;
-		else
-			this.x = x;
-		if( typeof y=='undefined' )
-			this.y = 0;
-		else
-			this.y = y;
-		if( typeof w=='undefined' )
-			this.width = 0;
-		else
-			this.width = w;
-		if( typeof h=='undefined' )
-			this.height = 0;
-		else
-			this.height = h;
+		x:0,
+		y:0,
+		width:0,
+		height:0,
+		constructor:function(x,y,w,h){
+			if( typeof x!='undefined' )
+				this.x = parseInt( x );
+			if( typeof y!='undefined' )
+				this.y = parseInt( y );
+			if( typeof w!='undefined' )
+				this.width = parseInt( w );
+			if( typeof h!='undefined' )
+				this.height = parseInt( h );
+		}
 	}
-});
+);
 
-geom.Point = new Class() ({
-	__init__:function(x,y)
+dojo.declare(
+	'geom.Point',
+	null,
 	{
-		if( typeof x=='undefined' )
-			this.x = 0;
-		else
-			this.x = x;
-		if( typeof y=='undefined' )
-			this.y = 0;
-		else
-			this.y = y;
+		x:0,
+		y:0,
+		constructor:function(x,y)
+		{
+			if( typeof x!='undefined' )
+				this.x = parseInt( x );
+			if( typeof y!='undefined' )
+				this.y = parseInt( y );
+		}
 	}
-});
+);

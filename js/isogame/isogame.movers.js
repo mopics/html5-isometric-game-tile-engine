@@ -1,12 +1,9 @@
-Class = js.lang.Class;
-Interface = js.lang.Interface;
-
 if (! ('isogame' in this)) {
     this.isogame = {};
 }
 
-isogame.AMover = new Class( isogame.AMover )({
-	__init__:function( movable, isomap, speed ) {
+dojo.declare('isogame.AMover', null, {
+	constructor:function( movable, isomap, speed ) {
 		this._map = isomap;
 		this._bytes = isomap._bytes;
 		this._sm = isomap._spriteManager;
@@ -138,11 +135,10 @@ isogame.AMover = new Class( isogame.AMover )({
 });
 
 
-isogame.SpriteMover = new Class( isogame.AMover ) ({
-	__init__:function( movable, isomap, speed )
+dojo.declare('isogame.SpriteMover', [isogame.AMover], {
+	constructor:function( movable, isomap, speed )
 	{
-		isogame.AMover.__init__.call( this, movable, isomap, speed );
-		
+		// call to super-constructor is done automatic by dojo
 		this.sm = this._map._spriteManager;
 		this.resolvers = [ 
 			this.resolveDown,
@@ -365,9 +361,9 @@ isogame.SpriteMover = new Class( isogame.AMover ) ({
 	}
 });
 
-isogame.MapMover = new Class( isogame.AMover ) ({
-	__init__:function( movable, isomap, speed ){
-		isogame.AMover.__init__.call( this, movable, isomap, speed );
+dojo.declare('isogame.MapMover', [isogame.AMover], {
+	constructor:function( movable, isomap, speed ){
+		// call to super-constructor is done automatic by dojo
 		this.sm = this._map._spriteManager;
 		this.tp = this._map._tilePainter;
 		this.resolvers = [ 
