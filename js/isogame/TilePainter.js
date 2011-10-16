@@ -28,6 +28,7 @@ dojo.declare( 'isogame.TilePainter', null, {
 		
 	    if( this.cropChanged ) // if crop changed redraw floor-tiles also
 		{
+			this._updateCropTranslate();
 			//console.log("cropChanged!");
 			this.floor.clearRect( 0,0,this.map._floorCanvas.width, this.map._floorCanvas.height );
 			if( this.drawInfoCanvas ){
@@ -240,13 +241,16 @@ dojo.declare( 'isogame.TilePainter', null, {
 				this.prevDir = 1;
 				break;
 		}
-		this.xCropTranslate = this.crop.x * this.map._bytes.tw;
-		this.yCropTranslate = this.crop.y * this.map._bytes.thh;
+		// cropTranslate set in draw-method via : _updateCropTranslate-method if cropChanged == true
 		
 		if(redraw){
 			this.cropChanged = true;
 			this.draw();
 		}
+	},
+	_updateCropTranslate:function(){
+		this.xCropTranslate = this.crop.x * this.map._bytes.tw;
+		this.yCropTranslate = this.crop.y * this.map._bytes.thh;
 	}
 });
 

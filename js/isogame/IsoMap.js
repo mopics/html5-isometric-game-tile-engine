@@ -1,4 +1,4 @@
-dojo.require( 'geom.*' );
+dojo.require( 'geom.all' );
 dojo.require( 'isogame.SpriteManager' );
 dojo.require( 'isogame.TilePainter' );
 

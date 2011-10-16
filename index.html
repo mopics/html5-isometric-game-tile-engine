@@ -29,10 +29,7 @@
 			dojo.require( 'isogame.Movable' );
 			dojo.require( 'isogame.SpriteMapMover' );
 			dojo.require( 'isogame.KeyControl' );
-			dojo.require( 'geom.*' ); /* this works because of statement:
-												dojo.provide( 'geom.*' ); 
-												in "js/geom/*.js"
-									  */
+			dojo.require( 'geom.all' );
 			
 			/*
 				init 
@@ -76,7 +73,7 @@
 				miniMe.asignMover( mover );
 				
 				// add miniMe to map
-				map.addMovable( miniMe, midTile.x, midTile.y, 1 );
+				map.addMovable( miniMe, midTile.x, midTile.y+2, 1 );
 				
 				map.onReady = function()
 				{
@@ -116,7 +113,7 @@
 				}
 				else
 				{
-					miniMe.mover._moveInRequest = false;
+					miniMe.mover.setRequested( false );
 				}
 			}
 			

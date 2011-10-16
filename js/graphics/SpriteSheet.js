@@ -1,4 +1,4 @@
-dojo.require('geom.*');
+dojo.require('geom.all');
 
 dojo.provide('sprites.SpriteSheet');
 dojo.declare( 'sprites.SpriteSheet', null, {

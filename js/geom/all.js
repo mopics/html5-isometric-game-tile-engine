@@ -1,4 +1,4 @@
-dojo.provide( 'geom.*' );
+dojo.provide( 'geom.all' );
 dojo.provide('geom.Point');
 dojo.provide('geom.Rectangle');
 dojo.declare(
