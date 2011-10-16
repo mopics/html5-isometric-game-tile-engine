@@ -12,47 +12,31 @@
 		<title>index</title>
 		<meta name="generator" content="TextMate http://macromates.com/">
 		<meta name="author" content="Peter Dijkstra">
-		<!-- import jquery [ used by isogame.KeyControl class ] -->
+		
+		<!-- thirdparty js [ jquery, dojo & Robbert's FrameBasedAnimation ] -->
 		<script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery-latest.js"></script>
-		<!-- import dojo [ used for class/inheritence simulation and other handy stuff ] -->
-			<!-- online link ( check : http://dev.aol.com/dojo/  for dojo-versions )
-				<script type="text/javascript" src="http://o.aolcdn.com/dojo/1.6/dojo/dojo.xd.js"></script>
-			-->
-			<script type="text/javascript" src="js/dojo-base/dojo.js"></script>
-		
-		<!-- import the engine! -->
-		<script charset="utf-8" type="text/javascript" src="js/thirdparty/FrameBasedAnimation_oud.js" ></script>
-		<script charset="utf-8" type="text/javascript" src="js/collections/array.js"></script>
-		<script charset="utf-8" type="text/javascript" src="js/pixfonts/pixfonts.js" ></script>
-		<script charset="utf-8" type="text/javascript" src="js/geom/geom.js" ></script>
-		<script charset="utf-8" type="text/javascript" src="js/graphics/sprites.js" ></script>
-		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.constants.js" ></script>
-		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.playercontrol.js" ></script>
-		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.map.js" ></script>
-		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.spritemanager.js" ></script>
-		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.sprites.js" ></script>
-		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.tilepainter.js" ></script>
-		<script charset="utf-8" type="text/javascript" src="js/isogame/isogame.movers.js" ></script>
-		
-		<!-- import isomap -->
+		<script type="text/javascript" src="js/thirdparty/dojo.js"></script>
+		<script type="text/javascript" src="js/thirdparty/FrameBasedAnimation_oud.js"></script>
+		<!-- map js -->
 		<script charset="utf-8" type="text/javascript" src="assets/maps/random_forestBIG.js" ></script>
 		
+		<!-- example-setup js -->
 		<script type="text/javascript" charset="utf-8" >
-		
-			var player_oud;
-			var body;
-			var head;
-			var context;
-			var mapclipboard;
-			var spriteclipboard;
-			var speed = 1;
-			var item;
-			var floor;
-			var info;
-			var m2t;
-			var miniMe;
-			var control;
+			/*
+			 	import needed isogame classes/modules in this scope/closure
+			*/
+			dojo.require( 'isogame.IsoMap' );
+			dojo.require( 'isogame.Movable' );
+			dojo.require( 'isogame.SpriteMapMover' );
+			dojo.require( 'isogame.KeyControl' );
+			dojo.require( 'geom.*' ); /* this works because of statement:
+												dojo.provide( 'geom.*' ); 
+												in "js/geom/*.js"
+									  */
 			
+			/*
+				init 
+			*/
 			dojo.addOnLoad(function(){
 				
 				mapCrop = new geom.Rectangle(2,5,20,15);
@@ -86,9 +70,9 @@
 				miniMe.addStillSpriteSheet( new isogame.IsoStillSheet( new isogame.PngSheet( "assets/sheets/headSprite.png", new geom.Rectangle(0,0,11,10) ),
 				 							-5, -14 ) );
 				//setup miniMe mover
-				var speed = 1;
+				speed = 1;
 				// var mover = new isogame.SpriteMover( miniMe, map, speed );
-				var mover = new isogame.MapMover( miniMe, map, speed );
+				mover = new isogame.MapMover( miniMe, map, speed );
 				miniMe.asignMover( mover );
 				
 				// add miniMe to map
@@ -106,11 +90,14 @@
 				map.setup();
 			});
 			
+			/*
+				game-frame updater
+			*/
 			function updateFrame()
 			{
 				map.update();
 				map.draw();
-				var dir = control.getDirection();
+				dir = control.getDirection();
 				
 				if( dir<8 )
 				{
