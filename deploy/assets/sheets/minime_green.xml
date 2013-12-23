@@ -1,0 +1,4 @@
+<char name="mini-me" >
+	<sheet img="[appdir]/character_templates/animatedBody_gr.png" type="animated" frames="9" ox="11" oy="-13"/>
+	<sheet img="[appdir]/character_templates/headSprite_gr.png" type="still" ox="11" oy="-23" />
+</char>

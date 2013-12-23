@@ -22,19 +22,7 @@
 		<script type="text/javascript" charset="utf-8" src="js/utils/ooputils.min.js"></script>
 		<script type="text/javascript" charset="utf-8" src="js/utils/puremvc_multi_instance_purejs.min.js"></script>
 
-        <!--START_MINIFY-->
-        <script src="js/isogame/core.js"></script>
-        <script src="js/isogame/SpriteManager.js"></script>
-        <script src="js/isogame/TilePainter.js"></script>
-        <script src="js/isogame/MapBytes.js"></script>
-        <script src="js/isogame/Mouse2Tile.js"></script>
-        <script src="js/isogame/IsoMap.js"></script>
-        <script src="js/isogame/isosheet.js"></script>
-        <script src="js/isogame/movables.js"></script>
-        <script src="js/isogame/movers.js"></script>
-        <script src="js/isogame/playercontrol.js"></script>
-        <script src="js/isogame/pathfinder.js"></script>
-		<!--END_MINIFY-->
+        <script src="isogame-0.1.0.min.js"></script>
 
 		
 		<!-- example-setup js -->
@@ -89,7 +77,7 @@
 				map.onReady = function()
 				{
 					keycontrol = new isogame.KeyControl();
-                    mousecontrol = new isogame.MouseControl( miniMe, map, true );
+                    mousecontrol = new isogame.MouseControl( map, miniMe );
 					// start running game-frame updater
 					setInterval(function() {
 		                updateFrame();

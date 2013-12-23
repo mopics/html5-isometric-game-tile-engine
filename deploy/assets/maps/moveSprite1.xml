@@ -1,0 +1,64 @@
+<map tileWidth="32" cols="6" rows="10" image="testMap/graphics/simpleGarden.png">
+-
+	<slices>
+<slice id="0" x="0" y="0" w="32" h="16" ox="0" oy="0" type="0"/>
+<slice id="1" x="0" y="17" w="32" h="16" ox="0" oy="0" type="0"/>
+<slice id="2" x="0" y="34" w="32" h="18" ox="11" oy="10" type="2"/>
+</slices>
+<enterTiles>
+	</enterTiles>
+<actions>
+	</actions>
+-
+	<tiles>
+<tile _yindex="1" _xindex="1" _X="32" _Y="8" _floorid="1"/>
+<tile _yindex="1" _xindex="2" _X="64" _Y="8" _floorid="1"/>
+<tile _yindex="1" _xindex="3" _X="96" _Y="8" _floorid="1"/>
+<tile _yindex="1" _xindex="4" _X="128" _Y="8" _floorid="1"/>
+<tile _yindex="1" _xindex="5" _X="160" _Y="8" _floorid="1"/>
+<tile _yindex="2" _xindex="0" _X="16" _Y="16" _floorid="1"/>
+<tile _yindex="2" _xindex="1" _X="48" _Y="16" _floorid="1"/>
+<tile _yindex="2" _xindex="2" _obstruct="true" _X="80" _Y="16" _floorid="1" _itemid="2"/>
+<tile _yindex="2" _xindex="3" _X="112" _Y="16" _floorid="1"/>
+<tile _yindex="2" _xindex="4" _X="144" _Y="16" _floorid="1"/>
+<tile _yindex="2" _xindex="5" _X="176" _Y="16" _floorid="1"/>
+<tile _yindex="3" _xindex="1" _X="32" _Y="24" _floorid="1"/>
+<tile _yindex="3" _xindex="2" _X="64" _Y="24" _floorid="1"/>
+<tile _yindex="3" _xindex="3" _X="96" _Y="24" _floorid="1"/>
+<tile _yindex="3" _xindex="4" _X="128" _Y="24" _floorid="0"/>
+<tile _yindex="3" _xindex="5" _X="160" _Y="24" _floorid="1"/>
+<tile _yindex="4" _xindex="0" _X="16" _Y="32" _floorid="1"/>
+<tile _yindex="4" _xindex="1" _X="48" _Y="32" _floorid="0"/>
+<tile _yindex="4" _xindex="2" _X="80" _Y="32" _floorid="1"/>
+<tile _yindex="4" _xindex="3" _X="112" _Y="32" _floorid="1"/>
+<tile _yindex="4" _xindex="4" _X="144" _Y="32" _floorid="1"/>
+<tile _yindex="4" _xindex="5" _X="176" _Y="32" _floorid="1"/>
+<tile _yindex="5" _xindex="1" _X="32" _Y="40" _floorid="1"/>
+<tile _yindex="5" _xindex="2" _X="64" _Y="40" _floorid="1"/>
+<tile _yindex="5" _xindex="3" _X="96" _Y="40" _floorid="1"/>
+<tile _yindex="5" _xindex="4" _obstruct="true" _X="128" _Y="40" _floorid="1" _itemid="2"/>
+<tile _yindex="5" _xindex="5" _X="160" _Y="40" _floorid="1"/>
+<tile _yindex="6" _xindex="0" _X="16" _Y="48" _floorid="1"/>
+<tile _yindex="6" _xindex="1" _obstruct="true" _X="48" _Y="48" _floorid="1" _itemid="2"/>
+<tile _yindex="6" _xindex="2" _X="80" _Y="48" _floorid="1"/>
+<tile _yindex="6" _xindex="3" _X="112" _Y="48" _floorid="1"/>
+<tile _yindex="6" _xindex="4" _X="144" _Y="48" _floorid="1"/>
+<tile _yindex="6" _xindex="5" _X="176" _Y="48" _floorid="1"/>
+<tile _yindex="7" _xindex="1" _X="32" _Y="56" _floorid="1"/>
+<tile _yindex="7" _xindex="2" _X="64" _Y="56" _floorid="0"/>
+<tile _yindex="7" _xindex="3" _X="96" _Y="56" _floorid="1"/>
+<tile _yindex="7" _xindex="4" _X="128" _Y="56" _floorid="0"/>
+<tile _yindex="7" _xindex="5" _X="160" _Y="56" _floorid="0"/>
+<tile _yindex="8" _xindex="0" _X="16" _Y="64" _floorid="1"/>
+<tile _yindex="8" _xindex="1" _X="48" _Y="64" _floorid="1"/>
+<tile _yindex="8" _xindex="2" _X="80" _Y="64" _floorid="1"/>
+<tile _yindex="8" _xindex="3" _X="112" _Y="64" _floorid="1"/>
+<tile _yindex="8" _xindex="4" _X="144" _Y="64" _floorid="1"/>
+<tile _yindex="8" _xindex="5" _X="176" _Y="64" _floorid="1"/>
+<tile _yindex="9" _xindex="1" _X="32" _Y="72" _floorid="1"/>
+<tile _yindex="9" _xindex="2" _X="64" _Y="72" _floorid="1"/>
+<tile _yindex="9" _xindex="3" _X="96" _Y="72" _floorid="1"/>
+<tile _yindex="9" _xindex="4" _X="128" _Y="72" _floorid="1"/>
+<tile _yindex="9" _xindex="5" _X="160" _Y="72" _floorid="1"/>
+</tiles>
+</map>

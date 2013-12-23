@@ -1,306 +1,191 @@
-dojo.require( 'geom.all' );
-dojo.require( 'isogame.SpriteManager' );
-dojo.require( 'isogame.TilePainter' );
+/**
+ * Created with JetBrains WebStorm.
+ * User: peter
+ * Date: 4/18/13
+ * Time: 4:37 PM
+ * To change this template use File | Settings | File Templates.
+ */
 
-dojo.provide( 'isogame.MapBytes' );
-dojo.declare( 'isogame.MapBytes', null,{
-	constructor:function( data )
-	{
-		this.data = data;
-		this.actions = new Array();
-		this.passActions = new Array();
-		this.obstructs = new Array();
-		this.coords = new Array();
-		this.floorIds = new Array();
-		this.itemIds = new Array();
-		this.mapIndexes = new Array();
-		
-		
-		this.position = 0;
-		this.tw = this.data.tileWidth;
-		this.th = this.tw/2;
-		this.thh = this.th/2;
-		this._createBytes();
-	},
-	_createBytes:function()
-	{
-		// create empty tile bytes 
-		for(var yi=0;yi<this.data.rows;yi++)
-		{
-			if( yi!=0 )//dont create top tiles
-			{
-				for(var xi=0;xi<this.data.cols;xi++)
-				{
-					var addX=0;
-					if(yi%2==0)
-						addX = this.tw/2;
-					if( xi==0 && addX==0  )
-					{
-						//dont create left-side tiles
-					} 
-					else
-					{
-						//TODO create tile
-						var rX = xi*this.tw + addX;
-						var rY = yi*(this.tw/4);
-						//this.writeBoolean(false); // default is set to not active
-						this.actions.push(-1); // actionId
-						this.passActions.push(-1); // passActionId
-						
-						this.obstructs.push( true ); // obstruct 
-						//this.writeBoolean(false);// char busy
-						//this.writeBoolean(false);// switchfast
-						//dirs - locks
-						/*this.writeBoolean(false);//up
-						this.writeBoolean(false);//right-up
-						this.writeBoolean(false);//right
-						this.writeBoolean(false);//right-down
-						this.writeBoolean(false);//down
-						this.writeBoolean(false);//left-down
-						this.writeBoolean(false);//left
-						this.writeBoolean(false);//left-up
-						*/
-						//coords
-						this.coords.push({x:rX,y:rY,z:-1}); // x, y, z
-						//graphics
-						this.floorIds.push(-1); // floor  layer
-						//this.writeInt(-1); // floor2 layer
-						this.itemIds.push(-1); // item   layer
-						//draw style , placing
-						//this.writeInt(-1);
-						//this.writeInt(-1);
-						//indexes
-						this.mapIndexes.push({y:yi,x:xi});
-					}
-				}
-			}
-		}
-		// fill created empty tiles with tile-data
-		for( var i=0; i<this.data.tiles.length; i++ )
-		{
-			var tile = this.data.tiles[i];
-			this.movePosTo( tile._yindex, tile._xindex );
-			if( typeof tile._floorid != 'undefined' )
-			{
-				this.floorIds[this.position] = tile._floorid;
-				this.obstructs[this.position] = false;
-			}
-			if( typeof tile._itemid != 'undefined' )
-			{
-				this.itemIds[this.position]  = tile._itemid;
-				this.obstructs[this.position] = true;
-			}
-			if( typeof tile._action != 'undefined' )
-				this.actions[this.position]  = tile._action;
-			if( typeof tile._passaction != 'undefined' )
-				this.passActions[this.position] = tile._passaction;
-			if( typeof tile._obstruct != 'undefined' )
-				this.obstructs[this.position] = tile._obstruct;
-		}
-	},
-	tileExcists:function( Y, X )
-	{
-		if(Y>this.data.rows-1 || Y<1 || (Y%2==1 && X>this.data.cols-1) || X>this.data.cols-1 || (Y%2==1 && X==0) || X<1 )
-			return false;
-		else
-			return true;
-	},
-	movePosTo:function( Y, X )
-	{
-		if( Y%2==1  )
-		{
-			X --;
-		}
-		Y--;
-		//calc how many missing X'ses to substract from X
-		var missingXses = Math.round(Y/2);
-		X -= missingXses;
-		var pos = this.data.cols*Y + X;
-		this.position = this.data.cols*Y + X;
-	},
-	getFloorId:function()
-	{
-		return this.floorIds[this.position];
-	},
-	getItemId:function()
-	{
-		return this.itemIds[this.position];
-	},
-	getAction:function()
-	{
-		return this.actions[this.position];
-	},
-	getPassAction:function()
-	{
-		return this.passActions[this.position];
-	},
-	getObstruct:function()
-	{
-		return this.obstructs[this.position];
-	},
-	getCoords:function()
-	{
-		return this.coords[this.position];
-	},
-	getIndexes:function()
-	{
-		return this.mapIndexes[this.position];
-	},
-	isWalkable:function( Y, X ){
-		var te = this.tileExcists( Y,X );
-		this.movePosTo(Y,X);
-		var ob = this.obstructs[this.position];
-		
-		if( !this.tileExcists( Y,X ) ) return false;
-		this.movePosTo(Y,X);
-		return !this.obstructs[this.position];
-	}
-});
+// 6:
 
-dojo.provide('isogame.Mouse2Tile' );
-dojo.declare('isogame.Mouse2Tile', null, {
-	constructor:function( tw, rows, cols, context ) {
-		this.TOPLEFT = "#ff0000";
-		this.TOPRIGHT = "#00ff00";
-		this.BOTLEFT = "#0000ff";
-		this.BOTRIGHT = "#ff00ff";
-		this.cols = cols;
-		this.rows = rows;
-		this.tw = tw;
-		this.th = this.tw/2;
-		this.thh = this.th/2;
-		this.context = context;
-		
-		//TODO: draw topleft triangle
-		context.fillStyle = "#000000";
-		context.fillRect(0,0,this.tw, this.th );
-		
-		context.strokeStyle = this.TOPLEFT;
-		context.fillStyle = this.TOPLEFT;
-		context.beginPath();
-		context.moveTo(this.th,0);
-		context.lineTo( 0,this.thh );
-		context.lineTo( 0, 0 );
-		context.closePath();
-		//context.stroke();
-		context.fill();
-		context.fillStyle = this.TOPRIGHT;
-		context.beginPath();
-		context.moveTo(this.th,0);
-		context.lineTo( this.tw,this.thh );
-		context.lineTo( this.tw, 0 );
-		context.closePath();
-		context.fill();
-		context.fillStyle = this.BOTLEFT;
-		context.beginPath();
-		context.moveTo(this.th,this.th);
-		context.lineTo( 0,this.thh );
-		context.lineTo( 0, this.th );
-		context.closePath();
-		context.fill();
-		context.fillStyle = this.BOTRIGHT;
-		context.beginPath();
-		context.moveTo(this.th,this.th);
-		context.lineTo( this.tw,this.thh );
-		context.lineTo( this.tw, this.th );
-		context.closePath();
-		context.fill();
-	},
-	getIndexes:function( xm, ym ) { // returns geom.Point containing tile map-indexes
-		var fyIsOdd = false;
-		
-		var yr  = (ym)%this.thh;
-		var fmy = (ym)-yr;
-		var fy  = Math.round((fmy)/this.thh);
-		
-		var xr  = (xm)%this.tw;
-		var fmx = (xm)-xr;
-		var fx  = Math.round(fmx/this.tw);
-		
-		if( fy%2==1 ) {
-			fyIsOdd = true;
-			if( xr>=th )
-				fx += 1;
-		}
-		//to do check trhu bmp
-		if(fyIsOdd) {
-			if( xr<this.th )
-				imgd = this.context.getImageData(Math.round(xr)-th+this.tw,Math.round(yr)+this.thh, 1, 1);
-			else
-				imgd = this.context.getImageData(Math.round(xr)-this.th,Math.round(yr)+this.thh, 1, 1);
-		}
-		else
-			imgd = this.context.getImageData(Math.round(xr),Math.round(yr)+this.thh, 1, 1);
-		
-		var pixelClr = imgd.data;
-			
-		if(pixelClr==this.TOPLEFT) {
-			fy -= 1;
-		}
-		else if(pixelClr==this.BOTRIGHT) {
-			if(!fyIsOdd)
-				fx += 1;
-			fy += 1;
-		}
-		else if(pixelClr==this.BOTLEFT) {
-			if(fyIsOdd)
-				fx -= 1;
-			fy += 1;
-		}
-		//to do check wether index exists
-//			if(fy%2==1 && fx==0)
-//				return null;
-//			if( fy==0 || fx > cols-1 || fy>rows-1)
-//				return null;
-		// reverse : from indexes to pix coords
-		
-		return new geom.Point(fx,fy);
-	}
-});
+isogame.IsoMap = (function(){
+    /* io:
+        mapData : json map data
+        div : div to append canvas-elements in
+        cwidth : canvas width
+        cheight : canvas height
+        mapCrop : { x, y, width, height } map crop, may be null
+        mapOffset : { x, y } ( only used in unCropped maps )
+        debug : boolean ( currently only shows tile-indexes )
 
-dojo.provide('isogame.IsoMap');
-dojo.declare( 'isogame.IsoMap', null, {
-	constructor:function( mapData, cropRect, floorCanvas, itemCanvas, m2tCanvas, infoCanvas )
-	{
-		this._data = mapData;
-		this._bytes = new isogame.MapBytes( mapData );
-		this._crop = cropRect;
-		this._floorCanvas = floorCanvas;
-		this._itemCanvas = itemCanvas;
-		this._infoCanvas = infoCanvas;
-		this._m2tCanvas = m2tCanvas;
-		this._m2t = new isogame.Mouse2Tile( mapData.tileWidth, mapData.rows, mapData.cols, m2tCanvas.getContext('2d') );
-		this._image = new Image();
-		this._spriteManager = new isogame.SpriteManager( this );
-		this._tilePainter = new isogame.TilePainter( this, this._infoCanvas!=null );
-		this._firstPerson = null; // to be set
-	},
-	setup:function(){
-		//load map graphics
-		this._imageLoaded = false;
-        var self = this;
-        this._image.onload = function()
-        {
-            self._imageLoaded = true;
-			self.onReady();
+        ## if you want to create canvases outside for some reason : ##
+        floorCanvas : 
+        floor2Canvas :
+        itemCanvas :
+        mouseCanvas :
+        m2tCanvas :
+        ## or if not, don't define them ##
+    */
+    function IsoMap( io ) { 
+        var me = 'IsoMap.setNewData::';
+        if( !io.mapData ){ throw new Error( me+'please specify io.mapData ( json map data )'); }
+        if( !io.div ) { throw new Error( me+'please specify a root div to append iso canvases in'); }
+        if( !io.cwidth ){ throw new Error( me+'please specify a cwidth value for the iso canvases'); }
+        if( !io.cheight ){ throw new Error( me+'please specify a cheight value for the iso canvases'); }
+        this._data = io.mapData;
+        this._bytes = new isogame.MapBytes( io.mapData );
+        this._div = io.div;
+        this._cwidth = io.cwidth;
+        this._cheight = io.cheight;
+        this._crop = io.mapCrop;
+        this._offset = io.mapOffset; // only use in uncropped map!
+
+        // assign | create needed canvasses
+        var w = 100; var h = 100;
+        if( io.m2tCanvas ){
+            this._m2tCanvas = io.m2tCanvas;
+            this._m2tCanvas.style.width = io.mapData.tileWidth+'px'; 
+            this._m2tCanvas.style.height = (io.mapData.tileWidth/2)+'px';
+        } else {
+            this._m2tCanvas = this._createCanvasLayer(      "iso_m2t",      
+                io.mapData.tileWidth, io.mapData.tileWidth/2 ); this._m2tCanvas.style.visibility = "hidden";
         }
-        this._image.src = this._data.image;
-	},
-	addMovable:function( m, xi, yi, moveSpeed )
-	{
-		m.initialYindex = m.Yindex = yi;
-		m.initialXindex = m.Xindex = xi;
-		this._spriteManager.add( m );
-	},
-	onReady:function(){ /** old-school event-listener **/ },
-	//update data
-	update:function(){
-		this._spriteManager.update();
-	},
-	//draw data
-	draw:function( drawInfoCanvas ){
-		this._tilePainter.draw( drawInfoCanvas );
-	},
-	
-});
+        if( io.floorCanvas ){
+            this._floorCanvas = io.floorCanvas;
+        } else {
+            this._floorCanvas = this._createCanvasLayer(    "iso_floor",    this._cwidth, this._cheight );
+        }
+        if( io.floor2Canvas ){
+            this._floor2Canvas = io.floor2Canvas;
+        } else {
+            this._floor2Canvas = this._createCanvasLayer(   "iso_floor2",   this._cwidth, this._cheight );
+        }
+        if( io.itemCanvas ){
+            this._itemCanvas = io.itemCanvas;
+        } else {
+            this._itemCanvas = this._createCanvasLayer(     "iso_item",     this._cwidth, this._cheight );
+        }
+        if( io.mouseCanvas ){
+            this._mouseLyr = io.mouseCanvas;
+        } else {
+            this._mouseLyr = this._createCanvasLayer(       "iso_mouse",    this._cwidth, this._cheight );
+        }
+        if( io.infoCanvas ){
+            this._infoCanvas = io.infoCanvas;
+        }
+        else if( io.debug ){
+            this._infoCanvas = this._createCanvasLayer(     "iso_info",     this._cwidth, this._cheight );
+        }
+        var ca = [ this._floorCanvas, this._floor2Canvas, this._itemCanvas, this._mouseLyr, this._infoCanvas, this.infoCanvas ];
+        for( var i = 0 ; i<ca.length; i++ ){
+            var c = ca[i];
+            if( c ){
+                c.width = this._cwidth; c.height = this._cheight;
+                c.style.width = this._cwidth+'px'; c.style.height = this._cheight+'px';
+            }
+        }
 
+        // fill mouse body with transparent fill
+        var cxt = this._mouseLyr.getContext( '2d' );
+        cxt.fillRect( 0,0,cxt.width, cxt.height );
+        var m2tio = {
+            tw:io.mapData.tileWidth, 
+            rows:io.mapData.rows, 
+            cols:io.mapData.cols,
+            canvas:this._m2tCanvas
+        }
+        if( !this._crop && this._offset )
+            m2tio.offset = this._offset;
+        this._m2t = new isogame.Mouse2Tile( m2tio );
+
+        this._image = new Image();
+        this._spriteManager = new isogame.SpriteManager( this );
+        this._tilePainter = new isogame.TilePainter( this, this._infoCanvas!=null );
+        this._firstPerson = null; // to be set
+    }
+    IsoMap.prototype =  {
+        _createCanvasLayer:function( id , w, h ) /* > Canvas-element */ {
+            var c = document.createElement('canvas');
+            this._div.appendChild(c);
+            c.style.position = "absolute";
+            c.id = id; c.width = w; c.height = h;
+            return c;
+        },
+        setup:function() {
+            // load map graphics
+            this._imageLoaded = false;
+            var self = this;
+            this._image.onload = function()
+            {
+                // wait till img is really there
+                var id = setInterval( function(){
+                    if( self._image.width>0 ){
+                        clearInterval( id );
+                        self._imageLoaded = true;
+                        self._tilePainter.drawUnCroppedMap();
+                        self.onReady();
+                    }
+                }, 40 );
+            }
+            if( this._data.grpxPrefix )
+                this._image.src = this._data.grpxPrefix+this._data.graphics;
+            else
+                this._image.src = this._data.graphics;
+        },
+		setupSync:function( img ){
+			// no need to preload img ourselves now
+			if( !img ){
+				throw( new Error( "isogame.IsoMap.setupSync: no img specified!! "));
+			}
+			if( !img.width>0 ){
+				throw( new Error( "isogame.IsoMap.setupSync: img is not fully loaded!! "));
+			}
+			this._imageLoaded = true;
+			this._image = img;
+			this._tilePainter.image = this._image;
+			this._tilePainter.drawUnCroppedMap();
+		},
+        destroy:function(){
+            // remove canvases
+            this._div.removeChild( this._floorCanvas );
+            this._div.removeChild( this._floor2Canvas );
+            this._div.removeChild( this._itemCanvas );
+            this._div.removeChild( this._mouseLyr );
+            this._div.removeChild( this._m2tCanvas );
+            if( this._infoCanvas )
+                this._div.removeChild( this._infoCanvas );
+        },
+        restoreGraphicLayers:function(){
+            this._tilePainter.restoreGraphicLayers();
+        },
+        getCanvasses:function(){
+            var o = {};
+            o.floor = this._floorCanvas;
+            o.floor2 = this._floor2Canvas;
+            o.item = this._itemCanvas;
+            o.mouse = this._mouseLyr;
+            o.m2t = this._m2tCanvas;
+            if( this._infoCanvas )
+                o._infoCanvas;
+            return o;
+        },
+        addMovable:function( m, xi, yi, moveSpeed ) {
+            m.initialYindex = m.Yindex = yi;
+            m.initialXindex = m.Xindex = xi;
+            this._spriteManager.add( m );
+        },
+        removeMovable:function( m ){
+            this._spriteManager.remove( m );
+        },
+        onReady:function(){ /** called whenn map is fully initiated **/ },
+        //update data
+        update:function(){
+            this._spriteManager.update();
+        },
+        //draw data
+        draw:function( drawInfoCanvas ){
+            this._tilePainter.draw( drawInfoCanvas );
+        }
+    }
+    return IsoMap;
+}());
