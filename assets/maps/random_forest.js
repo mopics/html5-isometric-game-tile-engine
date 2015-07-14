@@ -26,7 +26,7 @@ maps.getTiles= function() {
   return _tiles;
 }
 maps.forest = {
-	"image":"assets/maps/graphics/simpleGarden.png",
+	"graphics":"assets/maps/graphics/simpleGarden.png",
 	"tileWidth":32,
 	"rows":100,
 	"cols":100,

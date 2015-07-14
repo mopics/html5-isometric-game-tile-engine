@@ -30,8 +30,8 @@ isogame.IsoMap = (function(){
         var me = 'IsoMap.setNewData::';
         if( !io.mapData ){ throw new Error( me+'please specify io.mapData ( json map data )'); }
         if( !io.div ) { throw new Error( me+'please specify a root div to append iso canvases in'); }
-        if( !io.cwidth ){ throw new Error( me+'please specify a cwidth value for the iso canvases'); }
-        if( !io.cheight ){ throw new Error( me+'please specify a cheight value for the iso canvases'); }
+		if( !io.cwidth ) { throw new Error( me+'please specify a canvas width'); }
+		if( !io.cheight ) { throw new Error( me+'please specify a canvas height'); }
         this._data = io.mapData;
         this._bytes = new isogame.MapBytes( io.mapData );
         this._div = io.div;
@@ -39,6 +39,7 @@ isogame.IsoMap = (function(){
         this._cheight = io.cheight;
         this._crop = io.mapCrop;
         this._offset = io.mapOffset; // only use in uncropped map!
+		this._backgroundClr = io.backgroundClr;
 
         // assign | create needed canvasses
         var w = 100; var h = 100;
@@ -100,7 +101,7 @@ isogame.IsoMap = (function(){
 
         this._image = new Image();
         this._spriteManager = new isogame.SpriteManager( this );
-        this._tilePainter = new isogame.TilePainter( this, this._infoCanvas!=null );
+        this._tilePainter = new isogame.TilePainter( this, this._infoCanvas!=null, this._backgroundClr );
         this._firstPerson = null; // to be set
     }
     IsoMap.prototype =  {
@@ -143,7 +144,12 @@ isogame.IsoMap = (function(){
 			this._imageLoaded = true;
 			this._image = img;
 			this._tilePainter.image = this._image;
-			this._tilePainter.drawUnCroppedMap();
+			if( this._crop ){
+				this._tilePainter.draw();
+			}
+			else {
+				this._tilePainter.drawUnCroppedMap();
+			}
 		},
         destroy:function(){
             // remove canvases
@@ -185,7 +191,21 @@ isogame.IsoMap = (function(){
         //draw data
         draw:function( drawInfoCanvas ){
             this._tilePainter.draw( drawInfoCanvas );
-        }
+		},
+		getMapOffset:function(){
+
+			// if not scrollable
+			if( this._offset )
+				return this._offset;
+
+			// return cropped offset
+			return {
+				x:-this._tilePainter.xCropTranslate - this._tilePainter.xCanvasTranslateAmount + this._tilePainter.md*2,
+				y:-this._tilePainter.yCropTranslate - this._tilePainter.yCanvasTranslateAmount
+			};
+
+		}
     }
+
     return IsoMap;
 }());

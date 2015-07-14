@@ -30,20 +30,21 @@ maps.getTiles= function() {
   return _tiles;
 }
 maps.forest = {
-	"image":"assets/maps/graphics/simpleGarden.png",
+	"graphics":"assets/maps/graphics/simpleGarden.png",
 	"tileWidth":32,
 	"rows":100,
 	"cols":100,
     "enterTiles": [],
-    "slices": [{
+    "slices": [
+	{
         "_h": 16,
         "_w": 32,
         "_y": 0,
         "_bmp": null,
-        "_oy": 0,
+        "_oy": 8,
         "_id": 0,
         "_x": 0,
-        "_ox": 0,
+        "_ox": 16,
         "_type": 0
     },
     {
@@ -51,10 +52,10 @@ maps.forest = {
         "_w": 32,
         "_y": 17,
         "_bmp": null,
-        "_oy": 0,
+        "_oy": 8,
         "_id": 1,
         "_x": 0,
-        "_ox": 0,
+        "_ox": 16,
         "_type": 0
     },
     {
@@ -62,10 +63,10 @@ maps.forest = {
         "_w": 32,
         "_y": 34,
         "_bmp": null,
-        "_oy": 0,
+        "_oy": 8,
         "_id": 2,
         "_x": 0,
-        "_ox": 0,
+        "_ox": 16,
         "_type": 0
     },
     {
@@ -73,10 +74,10 @@ maps.forest = {
         "_w": 32,
         "_y": 0,
         "_bmp": null,
-        "_oy": 0,
+        "_oy": 8,
         "_id": 3,
         "_x": 34,
-        "_ox": 0,
+        "_ox": 16,
         "_type": 0
     }],
     "actions": [],

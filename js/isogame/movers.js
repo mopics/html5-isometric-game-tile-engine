@@ -1,13 +1,16 @@
-/**
- * Created with JetBrains WebStorm.
- * User: peter
- * Date: 4/18/13
- * Time: 4:39 PM
- * To change this template use File | Settings | File Templates.
- */
-
 /** MOVERS **/
+
 isogame.AMover = (function(){
+	/**
+	 * Abstract-class for all movable sprite movers ( classes that can move movable sprites over the map, or the map under the movable )
+	 *
+	 * @namespace isogame
+	 * @class isogame.AMover
+	 * @param {isogame.AMovable} movable - the movable to move
+	 * @param {isogame.IsoMap} isomap - the map the movable is assigned to
+	 * @param {integer} speed - fastness of movement.
+	 * @constructor
+	 */
     function AMover( movable, isomap, speed ) {
         this._map = isomap;
         this._bytes = isomap._bytes;
@@ -32,76 +35,160 @@ isogame.AMover = (function(){
         this._mouseTarget; // isogame.Point
     }
     AMover.prototype = {
+		/**
+		 * Mover's game-tick update ( to be overriden by subclasses )
+		 * @method update
+		 */
         update:function()
         {
             //to be overridden by subclasses
         },
+		/**
+		 * TODO:??
+		 * @method getFutureIndexes
+		 * @return {*}
+		 */
         getFutureIndexes:function(){
             if( this._currDir>7  )
                 return { y:this._movable.Yindex, x:this._movable.Xindex };
             return this._ascendingsFuncs[this._currDir]( this._movable.Yindex, this._movable.Xindex );
         },
+		/**
+		 * TODO:
+		 * @method goInDir
+		 * @param d
+		 */
         goInDir:function( d )
         {
             this._currDir = d;
             this._dirFuncs[d](this);
         },
+		/**
+		 * TODO:
+		 * @method up
+		 * @param {isogame.AMover} self
+		 */
         up:function(self)
         {
             self._stepY = 2*self._speed;
             self._stepX = 0;
         },
+		/**
+		 * TODO:
+		 * @method down
+		 * @param {isogame.AMover} self
+		 */
         down:function(self)
         {
             self._stepY = 2*self._speed;
             self._stepX = 0;
         },
+		/**
+		 * TODO:
+		 * @method left
+		 * @param {isogame.AMover} self
+		 */
         left:function(self)
         {
             self._stepY = 0;
             self._stepX = 2*self._speed;
         },
+		/**
+		 * TODO:
+		 * @method right
+		 * @param {isogame.AMover} self
+		 */
         right:function(self)
         {
             self._stepY = 0;
             self._stepX = 2*self._speed;
         },
+		/**
+		 * TODO:
+		 * @method leftup
+		 * @param {isogame.AMover} self
+		 */
         leftup:function(self)
         {
             self._stepY   = 1*self._speed;
             self._stepX   = 2*self._speed;
         },
+		/**
+		 * TODO:
+		 * @method rightup
+		 * @param {isogame.AMover} self
+		 */
         rightup:function(self)
         {
             self._stepY   = 1*self._speed;
             self._stepX   = 2*self._speed;
         },
+		/**
+		 * TODO:
+		 * @method leftdown
+		 * @param {isogame.AMover} self
+		 */
         leftdown:function(self)
         {
             self._stepY   = 1*self._speed;
             self._stepX   = 2*self._speed;
         },
+		/**
+		 * TODO:
+		 * @method rightdown
+		 * @param {isogame.AMover} self
+		 */
         rightdown:function(self)
         {
             self._stepY   = 1*self._speed;
             self._stepX   = 2*self._speed;
         },
+		/**
+		 * Returns ascending(up) tile
+		 * @method ascUp
+		 * @param {int} yi
+		 * @param {int} xi
+		 */
         ascUp:function(yi, xi)
         {
             return { y:yi-2, x:xi };
         },
+		/**
+		 * Returns ascending(down) tile
+		 * @method ascDown
+		 * @param {int} yi
+		 * @param {int} xi
+		 */
         ascDown:function(yi, xi)
         {
             return { y:yi+2, x:xi };
         },
+		/**
+		 * Returns ascending(left) tile
+		 * @method ascLeft
+		 * @param {int} yi
+		 * @param {int} xi
+		 */
         ascLeft:function(yi, xi)
         {
             return { y:yi, x:xi-1 };
         },
+		/**
+		 * Returns ascending(right) tile
+		 * @method ascRight
+		 * @param {int} yi
+		 * @param {int} xi
+		 */
         ascRight:function(yi, xi)
         {
             return { y:yi, x:xi+1 };
         },
+		/**
+		 * Returns ascending(leftup) tile
+		 * @method ascLeftUp
+		 * @param {int} yi
+		 * @param {int} xi
+		 */
         ascLeftUp:function( yi, xi )
         {
             if( yi%2==0 ) {// if even
@@ -109,6 +196,12 @@ isogame.AMover = (function(){
             }
             return { y:yi-1, x:xi-1 };
         },
+		/**
+		 * Returns ascending(rightup) tile
+		 * @method ascRightUp
+		 * @param {int} yi
+		 * @param {int} xi
+		 */
         ascRightUp:function(yi, xi)
         {
             if( yi%2==0 ) {// if even
@@ -116,6 +209,12 @@ isogame.AMover = (function(){
             }
             return { y:yi-1, x:xi };
         },
+		/**
+		 * Returns ascending(leftdown) tile
+		 * @method ascLeftDown
+		 * @param {int} yi
+		 * @param {int} xi
+		 */
         ascLeftDown:function(yi, xi)
         {
             if( yi%2==0 ) {// if even
@@ -123,6 +222,12 @@ isogame.AMover = (function(){
             }
             return { y:yi+1, x:xi-1 };
         },
+		/**
+		 * Returns ascending(rightdown) tile
+		 * @method ascRightDown
+		 * @param {int} yi
+		 * @param {int} xi
+		 */
         ascRightDown:function(yi, xi)
         {
             if( yi%2==0 ) {// if even
@@ -130,6 +235,10 @@ isogame.AMover = (function(){
             }
             return { y:yi+1, x:xi };
         },
+		/**
+		 * Stops movement
+		 * @method stop
+		 */
         stop:function()
         {
             this._currDir = 888;
@@ -137,12 +246,27 @@ isogame.AMover = (function(){
             this._stepX   = 0;
             this._moveInRequest = false;
         },
+		/**
+		 * Returns wether there is still a move requested
+		 * @method isRequested
+		 * @return {boolean}
+		 */
         isRequested:function() {
             return this._moveInRequest;
         },
+		/**
+		 * Requests move
+		 * @method setRequested
+		 * @param {boolean} b
+		 */
         setRequested:function( b ) {
             this._moveInRequest = b;
         },
+		/**
+		 * Returns wether the movable is perfectly snapped on it's tile
+		 * @method isSnapped
+		 * @return {Boolean}
+		 */
         isSnapped:function(){
             return ( this._movable.relX==0 && this._movable.relY==0 );
         },
@@ -159,6 +283,13 @@ isogame.AMover = (function(){
             return this._speed;
         },
         setSpeed:function( s ){
+			//check if movespeed is acceptable
+			var n = this._map.tw / s;
+			var ch = n.toString().split('.');
+			if ( ch.length > 1 )
+			{
+				throw isogame.Constants.errors.SPITE_MOVE_SPEED_ODD;
+			}
             this._speed = s;
         },
         getMap:function() {
@@ -686,6 +817,7 @@ isogame.SpriteMover = (function(){ // extends AMover
 
     return SpriteMover;
 }());
+
 // combination/switch of the two movers above
 isogame.SpriteMapMover = (function(){
     function SpriteMapMover( movable, isomap, speed ){

@@ -21,316 +21,342 @@
 
 var isogame = isogame || {};
 
-isogame.compareArrays = function(a, b) {
-    for (var i = 0; i < a.length; i++)
-        if (a[i] != b[i]) return false;
-    return true;
+isogame.compareArrays = function (a, b) {
+	for (var i = 0; i < a.length; i++)
+		if (a[i] != b[i]) return false;
+	return true;
 }
 //  TODO: <generics>
 //  http://java.sun.com/j2se/1.4.2/docs/api/java/util/ArrayList.html
-isogame.ArrayList = (function(){
-    function ArrayList( array )  {
-        /** Initializer for ArrayList **/
-        this._array = (array ? array.slice() : []);
-    }
-    ArrayList.prototype = {
-        add : function( element )  {
-            /** Add given element to this list. **/
-            this._array.push( element );
-        },
+isogame.ArrayList = (function () {
+	function ArrayList(array) {
+		/** Initializer for ArrayList **/
+		this._array = (array ? array.slice() : []);
+	}
 
-        addAll : function( collection )  {
-            /** Add given collection of items to this list.
-             (Collection being either another ArrayList or Dictionary, or a subclass of either.) **/
-            var that = this;
-            collection.iterate(function( k, v )  {
-                that.add( v );
-            });
-        },
+	ArrayList.prototype = {
+		add: function (element) {
+			/** Add given element to this list. **/
+			this._array.push(element);
+		},
 
-        clear : function()  {
-            /** Clear contents of this list. **/
-            this._array = [];
-        },
+		addAll: function (collection) {
+			/** Add given collection of items to this list.
+			 (Collection being either another ArrayList or Dictionary, or a subclass of either.) **/
+			var that = this;
+			collection.iterate(function (k, v) {
+				that.add(v);
+			});
+		},
 
-        contains : function( element, comparator )  {
-            /** Check if this list contains given element,
-             optionally using a callback to compare items. **/
-            return( this.indexOf( element, comparator ) !== -1 );
-        },
+		clear: function () {
+			/** Clear contents of this list. **/
+			this._array = [];
+		},
 
-        containsAll : function( collection, comparator )  {
-            /** Check if this list contains every item in given collection,
-             optionally using a callback to compare items. **/
-            var that = this, containsAll = true;
-            collection.iterate( function( k, v )  {
-                if( ! that.contains( v, comparator ) )  {
-                    containsAll = false;
-                    return( true );
-                }
-            });
-            return( containsAll );
-        },
+		contains: function (element, comparator) {
+			/** Check if this list contains given element,
+			 optionally using a callback to compare items. **/
+			return( this.indexOf(element, comparator) !== -1 );
+		},
 
-        get : function( index )  {
-            /** Retrieve an item at given index. **/
-            return( this._array[ index ] );
-        },
+		containsAll: function (collection, comparator) {
+			/** Check if this list contains every item in given collection,
+			 optionally using a callback to compare items. **/
+			var that = this, containsAll = true;
+			collection.iterate(function (k, v) {
+				if (!that.contains(v, comparator)) {
+					containsAll = false;
+					return( true );
+				}
+			});
+			return( containsAll );
+		},
 
-        indexOf : function( element, comparator )  {
-            /** Get the index the given element exists in this list,
-             optionally using a callback to compare items. **/
-            var index = -1, compare = this.getComparator( comparator );
-            this.iterate( function( k, v )  {
-                if( compare( element, v ) )  {
-                    index = k;
-                    return( true );
-                }
-            });
-            return( index );
-        },
+		get: function (index) {
+			/** Retrieve an item at given index. **/
+			return( this._array[ index ] );
+		},
 
-        isEmpty : function()  {
-            /** Check if this list contains zero elements. **/
-            return( this._array.length === 0 );
-        },
+		indexOf: function (element, comparator) {
+			/** Get the index the given element exists in this list,
+			 optionally using a callback to compare items. **/
+			var index = -1, compare = this.getComparator(comparator);
+			this.iterate(function (k, v) {
+				if (compare(element, v)) {
+					index = k;
+					return( true );
+				}
+			});
+			return( index );
+		},
 
-        removeAt : function( index )  {
-            /** Remove element existing at given index in this list. **/
-            this._array.splice( index, 1 );
-        },
+		isEmpty: function () {
+			/** Check if this list contains zero elements. **/
+			return( this._array.length === 0 );
+		},
 
-        remove : function( element, comparator )  {
-            /** Remove given element from this list,
-             optionally using a callback to compare items. **/
-            var key, compare = this.getComparator( comparator );
-            this.iterate( function( k, v )  {
-                if( compare( element, v ) )  {
-                    key = k;
-                    return( true );
-                }
-            });
-            this.removeAt( key );
-        },
+		removeAt: function (index) {
+			/** Remove element existing at given index in this list. **/
+			this._array.splice(index, 1);
+		},
 
-        removeAll : function( collection, comparator )  {
-            /** Remove every item in given collection from this list,
-             optionally using a callback to compare items. **/
-            var that = this;
-            collection.iterate( function( k, v )  {
-                that.remove( v, comparator );
-            });
-        },
+		remove: function (element, comparator) {
+			/** Remove given element from this list,
+			 optionally using a callback to compare items. **/
+			var key, compare = this.getComparator(comparator);
+			this.iterate(function (k, v) {
+				if (compare(element, v)) {
+					key = k;
+					return( true );
+				}
+			});
+			this.removeAt(key);
+		},
 
-        retainAll : function( collection, comparator )  {
-            /** Remove every item not in given collection from this list,
-             optionally using a callback to compare items. **/
-            var that = this;
-            this.iterate( function( k, v )  {
-                if( ! collection.contains( v, comparator ) )  {
-                    that.remove( v, comparator );
-                }
-            });
-        },
+		removeAll: function (collection, comparator) {
+			/** Remove every item in given collection from this list,
+			 optionally using a callback to compare items. **/
+			var that = this;
+			collection.iterate(function (k, v) {
+				that.remove(v, comparator);
+			});
+		},
 
-        set : function( index, element )  {
-            /** Assign given element at given index in this list. **/
-            this._array[ index ] = element;
-        },
+		retainAll: function (collection, comparator) {
+			/** Remove every item not in given collection from this list,
+			 optionally using a callback to compare items. **/
+			var that = this;
+			this.iterate(function (k, v) {
+				if (!collection.contains(v, comparator)) {
+					that.remove(v, comparator);
+				}
+			});
+		},
 
-        size : function()  {
-            /** Retrieve the size of this list. **/
-            return( this._array.length );
-        },
+		set: function (index, element) {
+			/** Assign given element at given index in this list. **/
+			this._array[ index ] = element;
+		},
 
-        subList : function( fromIndex, toIndex )  {
-            /** Retrieve an ArrayList containing references to elements
-             from given fromIndex to given toIndex. **/
-            return( new js.util.ArrayList( this._array.slice( fromIndex, toIndex ) ) );
-        },
+		size: function () {
+			/** Retrieve the size of this list. **/
+			return( this._array.length );
+		},
 
-        toArray : function()  {
-            /** Retrieve an instance of Array containing the same list of references. **/
-            return( this._array.slice() );
-        },
+		subList: function (fromIndex, toIndex) {
+			/** Retrieve an ArrayList containing references to elements
+			 from given fromIndex to given toIndex. **/
+			return( new js.util.ArrayList(this._array.slice(fromIndex, toIndex)) );
+		},
 
-        getComparator : function( comparator )  {
-            /** Retrieve this instance's default comparator as fallback if given comparator is not defined. **/
-            return( (comparator !== undefined) ? comparator : this._defaultComparator );
-        },
+		toArray: function () {
+			/** Retrieve an instance of Array containing the same list of references. **/
+			return( this._array.slice() );
+		},
 
-        _defaultComparator : function( a, b )  {
-            /** Default method of comparing two values within this list. **/
-            return( a === b );
-        },
+		getComparator: function (comparator) {
+			/** Retrieve this instance's default comparator as fallback if given comparator is not defined. **/
+			return( (comparator !== undefined) ? comparator : this._defaultComparator );
+		},
 
-        iterate : function( callback )  {
-            /** Convenient, unified method of iterating elements in this list.
-             This pattern is common to all collection classes. **/
-            var array = this._array;
-            for( var i = (array.length - 1); i >= 0; i-- )  {
-                if( callback( i, array[ i ] ) )  {
-                    break;
-                }
-            }
-        },
+		_defaultComparator: function (a, b) {
+			/** Default method of comparing two values within this list. **/
+			return( a === b );
+		},
 
-        reduce : function( callback )  {
-            /** Reduce this list to a smaller list. Given callback is invoked for each element.
-             The element is removed if given callback returns false value (false, null, undefined). **/
-            var that = this;
-            this.iterate( function( k, v )  {
-                if( ! callback( k, v ) )  {
-                    that.removeAt( k );
-                }
-            });
-        }
-    }
+		iterate: function ( callback ) {
+			/** Convenient, unified method of iterating elements in this list.
+			 this pattern is common to all collection classes. **/
+			/*var array = this._array;
+			for (var i = (array.length - 1); i >= 0; i--) {
+				if (callback(i, array[ i ])) {
+					break;
+				}
+			}*/
+			var array = this._array;
+			for( var i=0; i<array.length; i++ ){
+				if( callback( i, array[i] ) ) {
+					break;
+				}
+			}
+		},
 
-    return ArrayList;
+		reduce: function ( callback ) {
+			/** Reduce this list to a smaller list. Given callback is invoked for each element.
+			 The element is removed if given callback returns false value (false, null, undefined). **/
+			var that = this;
+			this.iterate( function ( k, v ) {
+				if (!callback(k, v)) {
+					that.removeAt(k);
+				}
+			});
+		}
+	}
+
+	return ArrayList;
 }());
 
-isogame.Set = (function(){ // extends ArrayList
-    function Set( array )  {
-        /** Initializer for Set. **/
-        isogame.ArrayList.constructor.call( this );
-        // call super constructor ??
-        // collections.ArrayList.apply( this, arguments );
+isogame.Set = (function () { // extends ArrayList
 
-        if( array )  {
-            this.addAll( new collections.ArrayList(array) );
-        }
-    }
-    // inherit superclass stuff
-    Set.prototype = ooputils.inherit( isogame.ArrayList.prototype );
-    // use extend method to extend
-    ooputils.extend( Set.prototype, {
-        // overide constructor
-        constructor:Set,
-        // method overrides
-        add : function( element, comparator )  {
-            /** Add given element to this list if not already exists,
-             optionally using a callback to compare items. **/
-            if( ! this.contains( element, comparator ) )  {
-                isogame.ArrayList.prototype.add.call( this, element );
-            }
-        },
+	var ArrayList = isogame.ArrayList;
 
-        addAll : function( collection, comparator )  {
-            /** Add given collection of items to this list if each not already exists.
-             (Collection being either another ArrayList or Dictionary, or a subclass of either.) **/
-            var that = this;
-            collection.iterate(function( k, v )  {
-                that.add( v, comparator );
-            });
-        }
-    } );
-    // own methods
-    Set.prototype = {
+	function Set(array) {
+		/** Initializer for Set. **/
+		ArrayList.constructor.call(this);
+		// call super constructor ??
+		// collections.ArrayList.apply( this, arguments );
 
-    }
+		if (array) {
+			this.addAll(new ArrayList(array));
+		}
+	}
 
-    return Set;
+	// inherit superclass stuff
+	Set.prototype = ooputils.inherit(ArrayList.prototype);
+	// use extend method to extend
+	ooputils.extend(Set.prototype, {
+		// overide constructor
+		constructor: Set,
+		// method overrides
+		add: function (element, comparator) {
+			/** Add given element to this list if not already exists,
+			 optionally using a callback to compare items. **/
+			if (!this.contains(element, comparator)) {
+				ArrayList.prototype.add.call(this, element);
+			}
+		},
+
+		addAll: function (collection, comparator) {
+			/** Add given collection of items to this list if each not already exists.
+			 (Collection being either another ArrayList or Dictionary, or a subclass of either.) **/
+			var that = this;
+			collection.iterate(function (k, v) {
+				that.add(v, comparator);
+			});
+		}
+	});
+	// own methods
+	Set.prototype = {
+
+	}
+
+	return Set;
 }());
 
 
-isogame.Point = (function(){
-    function Point( x, y )
-    {
-        if( typeof x!='undefined' )
-            this.x = parseInt( x );
-        if( typeof y!='undefined' )
-            this.y = parseInt( y );
-    }
-    return Point;
-    Point.prototype = {
-        clone:function(){
-            return new Point( this.x, this.y );
-        }
-    }
+isogame.Point = (function () {
+	function Point(x, y) {
+		if (typeof x != 'undefined')
+			this.x = parseInt(x);
+		if (typeof y != 'undefined')
+			this.y = parseInt(y);
+	}
+
+	Point.prototype = {
+		clone: function () {
+			return new Point(this.x, this.y);
+		}
+	}
+
+	return Point;
 }());
-isogame.Rectangle = (function(){
-    function Rectangle( x, y, w, h ){
-        if( typeof x!='undefined' )
-            this.x = parseInt( x );
-        if( typeof y!='undefined' )
-            this.y = parseInt( y );
-        if( typeof w!='undefined' )
-            this.width = parseInt( w );
-        if( typeof h!='undefined' )
-            this.height = parseInt( h );
-    }
-    return Rectangle;
+isogame.Rectangle = (function () {
+	function Rectangle(x, y, w, h) {
+		if (typeof x != 'undefined')
+			this.x = parseInt(x);
+		if (typeof y != 'undefined')
+			this.y = parseInt(y);
+		if (typeof w != 'undefined')
+			this.width = parseInt(w);
+		if (typeof h != 'undefined')
+			this.height = parseInt(h);
+	}
+
+	return Rectangle;
 }());
 
-isogame.Constants = (function(){
-    function Constants(){};
-    Constants.errors = {
-        INVALID_SPRITE_XML:'not a valid XML-sprite file',
-        SPITE_MOVE_SPEED_ODD:"Movespeed is unacceptable",
-        SCROPPED_SPRITE_NO_MAP_CROP:'Use of the CroppedSpriteMover will cause problems whenn cropRect of IsoMap is not defined'
-    };
-    Constants.dirs = {
-        DOWN:0,
-        LEFT_DOWN:1,
-        LEFT:2,
-        LEFT_UP:3,
-        UP:4,
-        RIGHT_UP:5,
-        RIGHT:6,
-        RIGHT_DOWN:7
-    };
-	Constants.getAdjescentTiles = function( Y, X ){
+isogame.Constants = (function () {
+	function Constants() {
+	};
+	Constants.errors = {
+		INVALID_SPRITE_XML: 'not a valid XML-sprite file',
+		SPITE_MOVE_SPEED_ODD: "Movespeed is unacceptable",
+		SCROPPED_SPRITE_NO_MAP_CROP: 'Use of the CroppedSpriteMover will cause problems whenn cropRect of IsoMap is not defined'
+	};
+	Constants.dirs = {
+		DOWN: 0,
+		LEFT_DOWN: 1,
+		LEFT: 2,
+		LEFT_UP: 3,
+		UP: 4,
+		RIGHT_UP: 5,
+		RIGHT: 6,
+		RIGHT_DOWN: 7
+	};
+	Constants.getAdjescentTiles = function (Y, X) {
 		var tiles = [
 			[ Y - 2, X ], // up
-            [ Y + 2, X ],// down
-            [ Y, X - 1 ], // left
-            [ Y, X + 1 ], // right
+			[ Y + 2, X ],// down
+			[ Y, X - 1 ], // left
+			[ Y, X + 1 ], // right
 			[ Y - 1, X ], // rightup
 			[ Y - 1, X ], // leftup
 			[ Y + 1, X ], // rightdown
 			[ Y + 1, X ], // leftdown
 		];
-		if( Y%2==0 ){ // Y == even
-			tiles[4][1] ++ ;// update rightup X
-			tiles[6][1] ++; // update rightdown X
+		if (Y % 2 == 0) { // Y == even
+			tiles[4][1]++;// update rightup X
+			tiles[6][1]++; // update rightdown X
 		}
 		else { //  Y == odd
-			tiles[5][1] --; // update leftup X
-			tiles[7][1] --; // update leftdown X	
+			tiles[5][1]--; // update leftup X
+			tiles[7][1]--; // update leftdown X
 		}
 		return tiles;
 	};
-	Constants.getAdjescentTile = function( Y, X, dir ){
+	Constants.getAdjescentTile = function (Y, X, dir) {
 		var d = Constants.dirs;
 		var t = [ Y, X ];
-		switch( dir ){
+		switch (dir) {
 			case d.UP:
-				t[0] -= 2;break;
+				t[0] -= 2;
+				break;
 			case d.DOWN:
-				t[0] += 2;break;
+				t[0] += 2;
+				break;
 			case d.LEFT:
-				t[1] --; break;
+				t[1]--;
+				break;
 			case d.RIGHT:
-				t[1] ++; break;
+				t[1]++;
+				break;
 			case d.RIGHT_UP:
-				t[0] --;
-				if( Y%2==0 ){ t[1]++; }
+				t[0]--;
+				if (Y % 2 == 0) {
+					t[1]++;
+				}
 				break;
 			case d.LEFT_UP:
-				t[0] --;
-				if( Y%2 ){ t[1]--; }
+				t[0]--;
+				if (Y % 2) {
+					t[1]--;
+				}
 				break;
 			case d.RIGHT_DOWN:
-				t[0] ++;
-				if( Y%2==0 ){ t[1]++; }
+				t[0]++;
+				if (Y % 2 == 0) {
+					t[1]++;
+				}
 				break;
 			case d.LEFT_DOWN:
-				t[0] ++;
-				if( Y%2 ){ t[1] --; }
+				t[0]++;
+				if (Y % 2) {
+					t[1]--;
+				}
 				break;
 		}
 		return t;
 	};
-    return Constants;
+	return Constants;
 }());

@@ -14,93 +14,90 @@
 		-->
 		</style>
 
-        <!-- UTILS -->
-		<script type="text/javascript" charset="utf-8" src="js/utils/jquery-1.9.1.min.js"></script>
-        <script type="text/javascript" charset="utf-8" src="js/utils/jquery-migrate-1.1.1.min.js"></script>
-        <script type="text/javascript" charset="utf-8" src="js/utils/easeljs-0.6.0.min.js"></script>
-        <script type="text/javascript" charset="utf-8" src="js/utils/preloadjs-0.3.0.min.js"></script>
-		<script type="text/javascript" charset="utf-8" src="js/utils/ooputils.min.js"></script>
-		<script type="text/javascript" charset="utf-8" src="js/utils/puremvc_multi_instance_purejs.min.js"></script>
 
-        <!--START_MINIFY-->
-        <script src="js/isogame/core.js"></script>
-        <script src="js/isogame/SpriteManager.js"></script>
-        <script src="js/isogame/TilePainter.js"></script>
-        <script src="js/isogame/MapBytes.js"></script>
-        <script src="js/isogame/Mouse2Tile.js"></script>
-        <script src="js/isogame/IsoMap.js"></script>
-        <script src="js/isogame/isosheet.js"></script>
-        <script src="js/isogame/movables.js"></script>
-        <script src="js/isogame/movers.js"></script>
-        <script src="js/isogame/playercontrol.js"></script>
-        <script src="js/isogame/pathfinder.js"></script>
+	</head>
+	<body>
+		<div id="stage"></div>
+		<!-- MAPS-JS -->
+		<script src="assets/maps/random_forestBIG.js"></script>
+
+		<!-- UTILS -->
+		<script type="text/javascript" charset="utf-8" src="js/utils/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/utils/jquery-migrate-1.1.1.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/utils/easeljs-0.6.0.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/utils/preloadjs-0.3.0.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/utils/ooputils.min.js"></script>
+		<!--<script type="text/javascript" charset="utf-8" src="js/utils/puremvc_multi_instance_purejs.min.js"></script>-->
+		<!-- END_UTILS -->
+
+		<!--START_MINIFY-->
+		<script src="js/isogame/core.js"></script>
+		<script src="js/isogame/SpriteManager.js"></script>
+		<script src="js/isogame/TilePainter.js"></script>
+		<script src="js/isogame/MapBytes.js"></script>
+		<script src="js/isogame/Mouse2Tile.js"></script>
+		<script src="js/isogame/IsoMap.js"></script>
+		<script src="js/isogame/isosheet.js"></script>
+		<script src="js/isogame/movables.js"></script>
+		<script src="js/isogame/movers.js"></script>
+		<script src="js/isogame/playercontrol.js"></script>
+		<script src="js/isogame/pathfinder.js"></script>
 		<!--END_MINIFY-->
 
-		
+
 		<!-- example-setup js -->
-		<script type="text/javascript" charset="utf-8" >
-			
+		<script>
+
 			var mapJson = null;
-			var mapCrop = { x:0, y:0, width:14, height:30 };
+			var mapCrop = null;// { x:2, y:2, width:14, height:30 };
 			var midTile = null;
 			var tw, th, thh;
 			var floor, item, info, mouseLyr;
 			var map = null;
 			var miniMe = null;
 
-			$(function(){
-				// load map json
-				$.getJSON( "assets/maps/livingroom.map.json", function( json ){
-                	mapJson = json;
-	                init();
-	            } )
-	            .fail(function( e ) { console.log( e.toString() ); });
-			});
-			
+			init();
+
 			function init(){
 				//create isomap view
-				map = new isogame.IsoMap( { 
-											mapData:mapJson, 
-											div:document.getElementById('stage'),
-											cwidth:1000,
-											cheight:600,
-											mapCrop:mapCrop,
-											debug:false
-										} );
+				map = new isogame.IsoMap( {
+					mapData:maps.forest,
+					div:document.getElementById('stage'),
+					cwidth:1000,
+					cheight:600,
+					//mapOffset:{x:-16, y:-8},
+					mapCrop:mapCrop,
+					debug:false
+				} );
 				//setup character
-				//setup character
-				/*miniMe = new isogame.FirstPerson();
-				miniMe.addAnimatedSpriteSheet( new isogame.IsoAnimationSheet( new isogame.PngSheet( "assets/sheets/animatedBodySmooth.png", new isogame.Rectangle(0,0,12,10) ),
-				 								-5, -5, 9 ) );
-				miniMe.addStillSpriteSheet( new isogame.IsoStillSheet( new isogame.PngSheet( "assets/sheets/headSprite.png", new isogame.Rectangle(0,0,11,10) ),
-				 							-5, -14 ) );*/
 				miniMe = new isogame.FirstPerson();
-				miniMe.addAnimatedSpriteSheet( new isogame.IsoAnimationSheet( new isogame.PngSheet( "assets/sheets/boy-waiter.png", new isogame.Rectangle(0,0,64,128) ),
-				 								-28, -110, 9 ) );
+				miniMe.addAnimatedSpriteSheet( new isogame.IsoAnimationSheet( new isogame.PngSheet( "assets/sheets/animatedBodySmooth.png", new isogame.Rectangle(0,0,12,10) ),
+						-5, -5, 9 ) );
+				miniMe.addStillSpriteSheet( new isogame.IsoStillSheet( new isogame.PngSheet( "assets/sheets/headSprite.png", new isogame.Rectangle(0,0,11,10) ),
+						-5, -14 ) );
 				//setup character mover
-				speed = 2;
-				// var mover = new isogame.SpriteMover( miniMe, map, speed );
-				mover = new isogame.MapMover( miniMe, map, speed );
+				speed = 1;
+				mover = new isogame.SpriteMover( miniMe, map, speed );
+				// mover = new isogame.MapMover( miniMe, map, speed );
 				miniMe.asignMover( mover );
-				
+
 				// add miniMe to map
-				map.addMovable( miniMe, 8, 22 );
-				
-				map.onReady = function()
-				{
+				map.addMovable( miniMe, 1, 1 );
+
+				map.onReady = function() {
 					keycontrol = new isogame.KeyControl();
-                    mousecontrol = new isogame.MouseControl( miniMe, map, true );
+					mousecontrol = new isogame.MouseControl( miniMe, map, true );
 					// start running game-frame updater
 					setInterval(function() {
-		                updateFrame();
-		            }, 1000/50 );
-				}
+						updateFrame();
+					}, 1000/50 );
+				};
 				map.setup();
 			}
 			/*
-				game-frame updater
-			*/
-			
+			 game-frame updater
+			 */
+
 			function updateFrame()
 			{
 				map.update();
@@ -108,41 +105,27 @@
 
 				// MOUSE - PATHFINDER - CONTROL
 				var dir = mousecontrol.getDirection();
-                if( dir==8 ){
-                    // KEY - CONTROL if no path is being walked
-                    dir = keycontrol.getDirection();
-                }
+				if( dir==8 ) {
+					// KEY - CONTROL if no path is being walked
+					dir = keycontrol.getDirection();
+				}
 
-                //console.log( 'updateFrame dir= '+dir );
-				if( dir<8 )
-				{
-					// console.log( "dir="+dir );
+				if( dir<8 ) {
 					miniMe.mover.setRequested( true );
-					if( miniMe.mover.isSnapped() )
-					{
+					if( miniMe.mover.isSnapped() ) {
 						miniMe.play();
 						miniMe.mover.goInDir( dir );
 						miniMe.setDirection( dir );
 					}
 				}
-				else if( miniMe.mover.isSnapped() )
-				{
-					miniMe.gotoAndStop( 0 );	
+				else if( miniMe.mover.isSnapped() ) {
+					miniMe.gotoAndStop( 0 );
 				}
-				else
-				{
+				else {
 					miniMe.mover.setRequested( false );
 				}
 			}
-			
+
 		</script>
-	</head>
-	<body>
-		<div id="stage">
-		<!--<div id="masktop" style="position:absolute; background-color:#006600; width:500px; height:32px; top:-16px; left:-32px" />
-		<div id="maskbot" style="position:absolute; background-color:#006600; width:400px; height:40px; top:136px;" />
-		<div id="maskleft" style="position:absolute; background-color:#006600; width:64px; height:200px; left:0px; top:-116px" />
-		<div id="maskright" style="position:absolute; background-color:#006600; width:108px; height:200px; left:240px; top:0px" />-->
-		</div>
 	</body>
 </html>

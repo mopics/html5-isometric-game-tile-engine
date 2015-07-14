@@ -1,4 +1,5 @@
 var maps = {}
+cols:12,
 
 maps.forest = {
 	image:"assets/maps/graphics/simpleGarden.png",

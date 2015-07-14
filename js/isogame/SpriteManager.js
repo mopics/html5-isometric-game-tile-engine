@@ -35,20 +35,21 @@ isogame.SpriteManager = (function(){
         },
         switchRow:function( movable, ny)
         {
-            movable.Yindex = ny;
-            movable.relY = 0;
+			movable.setYindex( ny );
+			movable.setRelY( 0 );
+            movable.setRelX( 0 );
         },
         switchCol:function( movable, nx )
         {
-            movable.Xindex = nx;
-            movable.relX = 0;
+            movable.setXindex( nx );
+            movable.setRelX( 0 );
         },
         switchColRow:function( movable, Yi, Xi )
         {
-            movable.Yindex = Yi;
-            movable.Xindex = Xi;
-            movable.relX = 0;
-            movable.relY = 0;
+            movable.setYindex( Yi );
+            movable.setXindex( Xi );
+            movable.setRelX( 0 );
+            movable.setRelY( 0 );
         },
         getMovablesInCropArea:function( crop )
         {
@@ -56,20 +57,24 @@ isogame.SpriteManager = (function(){
             var o = {};
             var curr;
 
-            this.movables.iterate( function( k, m ) {
-                //if in crop
-                if( m.Xindex>crop.x-2 && m.Xindex < crop.x+crop.width+2 && m.Yindex > crop.y-2 && m.Yindex<crop.y+crop.height+2 )
-                {
-                    var yi = m.Yindex;
-                    var xi = m.Xindex;
-                    if( !o[yi] )
-                        o[yi] = {};
-                    if( !o[yi][xi] )
-                        o[yi][xi] = new Array();
-                    /** store movables in array at [yi][xi] in case more then one movable resides on the same tile	**/
-                    o[yi][xi].push(m);
-                }
-            });
+			for( var i=0; i<this.movables._array.length; i++ ) {
+
+				var m = this.movables._array[i];
+
+				//if in crop
+				if( m.Xindex>crop.x-2 && m.Xindex < crop.x+crop.width+2 && m.Yindex > crop.y-2 && m.Yindex<crop.y+crop.height+2 )
+				{
+					var yi = m.Yindex;
+					var xi = m.Xindex;
+					if( !o[yi] )
+						o[yi] = {};
+					if( !o[yi][xi] )
+						o[yi][xi] = new Array();
+					/** store movables in array at [yi][xi] in case more then one movable resides on the same tile	**/
+					o[yi][xi].push(m);
+				}
+
+			}
 
             return o;
         }

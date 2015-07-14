@@ -1,1 +1,6 @@
-my first git README
+The index example needs a working http-server.
+To see the isogameengine in action do one of the following :
+
++ Start the http_server ( node.js ( + connect module ) required )
++ Place files in a http webserver source folder
++ create a symbolic link to this code in your own http-server source folder
