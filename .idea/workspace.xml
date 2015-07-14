@@ -5,59 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e5fd24f-19d2-4422-af33-b94b981618ed" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/sheets/animatedBodySmooth.png" afterPath="$PROJECT_DIR$/assets/sheets/animatedBodySmooth.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/assets/sheets/animatedBodySmooth.png" afterPath="$PROJECT_DIR$/deploy/assets/sheets/animatedBodySmooth.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/sheets/boy-waiter.png" afterPath="$PROJECT_DIR$/assets/sheets/boy-waiter.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/assets/sheets/boy-waiter.png" afterPath="$PROJECT_DIR$/deploy/assets/sheets/boy-waiter.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/livingroom.grpx.png" afterPath="$PROJECT_DIR$/assets/maps/livingroom.grpx.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/assets/maps/livingroom.grpx.png" afterPath="$PROJECT_DIR$/deploy/assets/maps/livingroom.grpx.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/graphics/simpleGarden.gif" afterPath="$PROJECT_DIR$/assets/maps/graphics/simpleGarden.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/assets/maps/graphics/simpleGarden.gif" afterPath="$PROJECT_DIR$/deploy/assets/maps/graphics/simpleGarden.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/graphics/simpleGarden.png" afterPath="$PROJECT_DIR$/assets/maps/graphics/simpleGarden.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/assets/maps/graphics/simpleGarden.png" afterPath="$PROJECT_DIR$/deploy/assets/maps/graphics/simpleGarden.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/isogame/IsoMap.js" afterPath="$PROJECT_DIR$/js/isogame/IsoMap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/isogame/MapBytes.js" afterPath="$PROJECT_DIR$/js/isogame/MapBytes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/isogame/SpriteManager.js" afterPath="$PROJECT_DIR$/js/isogame/SpriteManager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/isogame/TilePainter.js" afterPath="$PROJECT_DIR$/js/isogame/TilePainter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/isogame/core.js" afterPath="$PROJECT_DIR$/js/isogame/core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/js/utils/easeljs-0.6.0.min.js" afterPath="$PROJECT_DIR$/deploy/js/utils/easeljs-0.6.0.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/utils/easeljs-0.6.0.min.js" afterPath="$PROJECT_DIR$/js/utils/easeljs-0.6.0.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/forest.js" afterPath="$PROJECT_DIR$/assets/maps/forest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/assets/maps/forest.js" afterPath="$PROJECT_DIR$/deploy/assets/maps/forest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/js/utils/fullscreen.js" afterPath="$PROJECT_DIR$/deploy/js/utils/fullscreen.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/utils/fullscreen.js" afterPath="$PROJECT_DIR$/js/utils/fullscreen.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/index.html" afterPath="$PROJECT_DIR$/deploy/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/isogame-0.1.0.min.js" afterPath="$PROJECT_DIR$/deploy/isogame-0.1.0.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/js/utils/isogame-0.1.0.min.js" afterPath="$PROJECT_DIR$/deploy/js/utils/isogame-0.1.0.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/utils/isogame.js" afterPath="$PROJECT_DIR$/js/utils/isogame.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/isogame/isosheet.js" afterPath="$PROJECT_DIR$/js/isogame/isosheet.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/js/utils/jquery-1.9.1.min.js" afterPath="$PROJECT_DIR$/deploy/js/utils/jquery-1.9.1.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/utils/jquery-1.9.1.min.js" afterPath="$PROJECT_DIR$/js/utils/jquery-1.9.1.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/js/utils/jquery-migrate-1.1.1.min.js" afterPath="$PROJECT_DIR$/deploy/js/utils/jquery-migrate-1.1.1.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/utils/jquery-migrate-1.1.1.min.js" afterPath="$PROJECT_DIR$/js/utils/jquery-migrate-1.1.1.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/livingroom.map.json" afterPath="$PROJECT_DIR$/assets/maps/livingroom.map.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/assets/maps/livingroom.map.json" afterPath="$PROJECT_DIR$/deploy/assets/maps/livingroom.map.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/minify.js" afterPath="$PROJECT_DIR$/minify.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/isogame/movables.js" afterPath="$PROJECT_DIR$/js/isogame/movables.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/isogame/movers.js" afterPath="$PROJECT_DIR$/js/isogame/movers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/js/utils/ooputils.js" afterPath="$PROJECT_DIR$/deploy/js/utils/ooputils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/utils/ooputils.js" afterPath="$PROJECT_DIR$/js/utils/ooputils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/js/utils/ooputils.min.js" afterPath="$PROJECT_DIR$/deploy/js/utils/ooputils.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/utils/ooputils.min.js" afterPath="$PROJECT_DIR$/js/utils/ooputils.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/js/utils/preloadjs-0.3.0.min.js" afterPath="$PROJECT_DIR$/deploy/js/utils/preloadjs-0.3.0.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/utils/preloadjs-0.3.0.min.js" afterPath="$PROJECT_DIR$/js/utils/preloadjs-0.3.0.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/js/utils/puremvc_multi_instance_purejs.js" afterPath="$PROJECT_DIR$/deploy/js/utils/puremvc_multi_instance_purejs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/utils/puremvc_multi_instance_purejs.js" afterPath="$PROJECT_DIR$/js/utils/puremvc_multi_instance_purejs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/js/utils/puremvc_multi_instance_purejs.min.js" afterPath="$PROJECT_DIR$/deploy/js/utils/puremvc_multi_instance_purejs.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/utils/puremvc_multi_instance_purejs.min.js" afterPath="$PROJECT_DIR$/js/utils/puremvc_multi_instance_purejs.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/random_forest.js" afterPath="$PROJECT_DIR$/assets/maps/random_forest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/random_forestBIG.js" afterPath="$PROJECT_DIR$/assets/maps/random_forestBIG.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/js/utils/soundjs-0.4.0.min.js" afterPath="$PROJECT_DIR$/deploy/js/utils/soundjs-0.4.0.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/utils/soundjs-0.4.0.min.js" afterPath="$PROJECT_DIR$/js/utils/soundjs-0.4.0.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deploy/js/utils/tweenjs-0.4.0.min.js" afterPath="$PROJECT_DIR$/deploy/js/utils/tweenjs-0.4.0.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/utils/tweenjs-0.4.0.min.js" afterPath="$PROJECT_DIR$/js/utils/tweenjs-0.4.0.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/http_server.js" afterPath="$PROJECT_DIR$/http_server.js" />
     </list>
     <ignored path="html5-isometric-game-tile-engine.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -123,8 +71,8 @@
       <file leaf-file-name="http_server.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/http_server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40041068" vertical-offset="0" max-vertical-offset="585">
-              <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.83258927" vertical-offset="137" max-vertical-offset="600">
+              <caret line="34" column="40" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -315,10 +263,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24597365" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30307466" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -739,8 +687,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/http_server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40041068" vertical-offset="0" max-vertical-offset="585">
-          <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.83258927" vertical-offset="137" max-vertical-offset="600">
+          <caret line="34" column="40" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
           <folding />
         </state>
       </provider>
